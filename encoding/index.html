@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Encoding tool</title>
+    <!-- jQuery -->
+    <script src="js/lib/jquery-2.2.4.min.js" type="text/javascript" charset="utf-8"></script>
+    <!-- bootstrap -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <script src="js/lib/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src = "./js/encoding.js"></script>
+</head>
+
+<body>
+<div style="padding: 10px 30px 10px;">
+    <h1 style="text-align:center;">Simple Encoding</h1>
+
+    <textarea class="form-control" rows="8" id="raw"></textarea>
+    <br />
+
+    <div class="form-group">
+        <select class="form-control" style="width:50%;" id='model'>
+          <option value="url">url</option>
+          <option value="escape">escape</option>
+          <option value ="b64">Base64</option>
+          <option value ="mysql_char">MySQL char</option>
+          <option value ="mysql_concat">MySQL concat</option>
+          <option value="mysql_char">MSSQL char</option>
+        </select>
+        <button type="button" class="btn btn-info" style="float:right;margin:10px;" onclick="encoding()">Encoding</button>
+        <button type="button" class="btn btn-info" style="float:right;margin:10px;" onclick="decoding()">Decoding</button>
+    </div>
+
+    <br />
+    <br />
+    <textarea class="form-control" rows="8" id="coded_text"></textarea>
+
+</div>
+</body>
+
+</html>
