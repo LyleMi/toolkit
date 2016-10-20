@@ -19,15 +19,17 @@ def parseUrl(url):
         else:
             url = "http://" + url
 
-    url = (url + '/') if url[-1] != '/' else url    
+    url = (url + '/') if url[-1] != '/' else url
 
     return url
 
+
 def main():
 
-    parser = argparse.ArgumentParser(description='sensitive path scan tool',
-                                     usage='%(prog)s [options]',
-                                     epilog='This is a sensitive path scan tool')
+    parser = argparse.ArgumentParser(
+        description='sensitive path scan tool',
+        usage='%(prog)s [options]',
+        epilog='This is a sensitive path scan tool')
     parser.add_argument('-l', '--list', action="store_true",
                         help='run with list model')
     parser.add_argument('-f', '--file', metavar='file',
@@ -80,7 +82,7 @@ def main():
 
     # print x
 
-    headers = {'User-Agent':__import__('wordlist').ua}
+    headers = {'User-Agent': __import__('wordlist').ua}
     # print headers
 
     proxies = None
@@ -90,8 +92,8 @@ def main():
         proxy = parseUrl(opts.proxy)
 
         proxies = {
-          "http": proxy,
-          "https": proxy,
+            "http": proxy,
+            "https": proxy,
         }
 
     s = requests.Session()
@@ -104,11 +106,12 @@ def main():
             continue
 
         try:
-            r = s.get(url+i, headers=headers, timeout=timeout, proxies=proxies)
+            r = s.get(url+i, headers=headers, timeout=timeout,
+                      proxies=proxies, verify=False)
             print(url+i), '\tstatus code: ', r.status_code
             if r.status_code < 400:
                 re.append(url+i)
-        except Exception , e:
+        except Exception, e:
             print e
 
     print 'exists:', re
@@ -118,3 +121,4 @@ if __name__ == '__main__':
     main()
 
 # testcase: python scan.py -l -f index.php,flag.php -t 0 -u localhost
+
