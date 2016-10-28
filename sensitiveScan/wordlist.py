@@ -1,7 +1,7 @@
 pathlist = ['.svn', '.git/config']
 pathlist += ['.idea', '.DS_Store']
 pathlist += ['admin/', 'root/', 'system/']
-pathlist += ['robots.txt', 'crossdomain.xml']
+pathlist += ['robots.txt', 'crossdomain.xml', 'sitemap.xml']
 pathlist += ['phpshe.tar.gz']
 
 
