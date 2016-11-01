@@ -3,6 +3,9 @@ function encoding() {
 
     var model = $('#model').val();
     switch (model) {
+        case 'hex':
+            raw = StrToHex(raw);
+            break;
         case 'url':
             raw = encodeURI(raw);
             break;
@@ -13,7 +16,7 @@ function encoding() {
             raw = base64encode(raw);
             break;
         case 'mysql_concat':
-            raw = "concat('"+raw.split('').join("','")+"')";
+            raw = "concat('" + raw.split('').join("','") + "')";
             break;
         default:
             break;
@@ -131,4 +134,12 @@ function base64decode(str) {
         out += String.fromCharCode(((c3 & 0x03) << 6) | c4);
     }
     return out;
+}
+
+　　
+function StrToHex(str) {　　　　
+    var val = '';　　　　
+    for (var i = 0; i < str.length; i++) 　　　　　　　　
+        val += '\\x' + (str.charCodeAt(i).toString(16));　　　　
+    return val;　　
 }
