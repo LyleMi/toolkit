@@ -10,3 +10,7 @@ some tool for fun
     a simple post tool
 * Curlhelper
     a class which make it easier to use php-curl
+* socketServer
+    simple socket server/client
+* sniffer
+    sniffer for fun

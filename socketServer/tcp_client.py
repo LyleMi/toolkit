@@ -2,12 +2,16 @@
 
 import socket
 
-target_host = "127.0.0.1"
-target_port = 9992
+host = socket.gethostbyname_ex(socket.gethostname())[2][-1]
+port = 9992
 
-client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client.connect((target_host, target_port))
+if __name__ == '__main__':
 
-client.send(raw_input('data to be send: '))
-response = client.recv(4096)
-client.close()
+    client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    try:
+        client.connect((host, port))
+        client.send('data to be send')
+        print 'recv: ', client.recv(4096)
+    finally:
+        client.close()
+        print 'socket closed'

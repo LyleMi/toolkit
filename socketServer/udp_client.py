@@ -1,12 +1,14 @@
 import socket
 
-target_host = "localhost"
-target_port = 19992
-# create a socket object
-client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-# send some data
-client.sendto("AAABBBCCC",(target_host,target_port))
-# receive some data
-data, addr = client.recvfrom(4096)
-print data
-client.close()
+host = socket.gethostbyname_ex(socket.gethostname())[2][-1]
+port = 19992
+
+if __name__ == '__main__':
+    
+    try:
+        client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        client.sendto("AAABBBCCC",(host,port))
+        data, addr = client.recvfrom(4096)
+        print 'receive data:[%s] from %s:%s' % ((data,) + addr)
+    finally:
+        client.close()
