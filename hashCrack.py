@@ -12,16 +12,20 @@ def sha256(s):
     return hashlib.sha256(s).hexdigest()
 
 
-def crack(compare):
-    for k in range(1, len(charset) + 1):
-        for i in itertools.permutations(charset, k):
-            if compare(i):
-                return ''.join(i)
+def crack(func):
+    def handle_args(*args, **kwargs):
+        for k in range(1, len(charset) + 1):
+            for i in itertools.permutations(charset, k):
+                s = ''.join(i)
+                if func(s):
+                    print s
+                    exit()
+    return handle_args
 
-
-def test(i):
-    return md5(''.join(i)) == '03c7c0ace395d80182db07ae2c30f034'
+@crack
+def md5crack(x):
+    return md5(x) == '03c7c0ace395d80182db07ae2c30f034'
 
 
 if __name__ == '__main__':
-    print crack(test)
+    print md5crack()

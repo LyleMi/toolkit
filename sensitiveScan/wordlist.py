@@ -1,4 +1,4 @@
-pathlist = ['.svn', '.git/config']
+pathlist = ['.svn', '.git/config', 'WEB-INF/web.xml']
 pathlist += ['.idea', '.DS_Store']
 pathlist += ['admin/', 'root/', 'system/']
 pathlist += ['robots.txt', 'crossdomain.xml', 'sitemap.xml']
