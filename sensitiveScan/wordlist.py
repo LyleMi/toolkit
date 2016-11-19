@@ -2,7 +2,7 @@ pathlist = ['.svn', '.git/config', 'WEB-INF/web.xml']
 pathlist += ['.idea', '.DS_Store']
 pathlist += ['admin/', 'root/', 'system/']
 pathlist += ['robots.txt', 'crossdomain.xml', 'sitemap.xml']
-pathlist += ['phpshe.tar.gz']
+pathlist += ['phpshe.tar.gz', '.viminfo']
 
 suffixlist = ['', '~', 's', '.bak', '.txt', '.rar']
 suffixlist += ['.src', '.inc', '.tmp']
