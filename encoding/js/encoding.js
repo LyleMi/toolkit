@@ -9,6 +9,9 @@ function encoding() {
         case 'url':
             raw = encodeURI(raw);
             break;
+        case 'url_a':
+            raw = encodeURI_ascii(raw);
+            break;
         case 'escape':
             raw = escape(raw);
             break;
@@ -142,4 +145,11 @@ function StrToHex(str) {　　　　
     for (var i = 0; i < str.length; i++) 　　　　　　　　
         val += '\\x' + (str.charCodeAt(i).toString(16));　　　　
     return val;　　
+}
+
+function encodeURI_ascii(str) {
+    var val = '';　　　　
+    for (var i = 0; i < str.length; i++) 　　　　　　　　
+        val += '%' + (str.charCodeAt(i).toString(16));　　　　
+    return val;　    
 }
