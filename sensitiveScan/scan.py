@@ -34,7 +34,9 @@ def main():
                         help='run with list model')
     parser.add_argument('-f', '--file', metavar='file',
                         default='',
-                        help='run with file model')
+                        help='run with file model')    
+    parser.add_argument('-p', '--php', action="store_true",
+                        help='run with php model')
     parser.add_argument('--proxy', metavar='proxy',
                         default='',
                         help='use proxy')
@@ -56,7 +58,7 @@ def main():
 
     timeout = opts.timeout if opts.timeout else 5
 
-    if not (opts.list or opts.file):
+    if not (opts.list or opts.file or opts.php):
         sys.stderr.write('please at least choose a model')
         sys.exit(1)
 
@@ -77,6 +79,10 @@ def main():
         for file in opts.file.split(','):
             x += map(lambda i: file + i, suffixlist)
             x += map(lambda i: '.' + file + i, vimsuffix)
+
+    if opts.php:
+        from wordlist import phps
+        x += map(lambda i: i + '.php', phps)
 
     re = []
 
