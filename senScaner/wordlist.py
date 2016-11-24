@@ -1,5 +1,5 @@
 pathlist = ['.svn', '.git/config', 'WEB-INF/web.xml']
-pathlist += ['.idea', '.DS_Store']
+pathlist += ['.idea', '.DS_Store', '.htaccess']
 pathlist += ['admin/', 'root/', 'system/']
 pathlist += ['robots.txt', 'crossdomain.xml', 'sitemap.xml']
 pathlist += ['phpshe.tar.gz', '.viminfo']

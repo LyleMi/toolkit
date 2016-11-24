@@ -9,12 +9,14 @@ def hexdump(src, length=16):
     digits = 4 if isinstance(src, unicode) else 2
 
     for i in xrange(0, len(src), length):
-       s = src[i:i+length]
-       hexa = b' '.join(["%0*X" % (digits, ord(x))  for x in s])
-       text = b''.join([x if 0x20 <= ord(x) < 0x7F else b'.'  for x in s])
-       result.append( b"%04X   %-*s   %s" % (i, length*(digits + 1), hexa, text) )
+        s = src[i:i+length]
+        hexa = b' '.join(["%0*X" % (digits, ord(x)) for x in s])
+        text = b''.join([x if 0x20 <= ord(x) < 0x7F else b'.' for x in s])
+        result.append(b"%04X   %-*s   %s" %
+                      (i, length*(digits + 1), hexa, text))
 
     print b'\n'.join(result)
+
 
 class IP(Structure):
     _fields_ = [
@@ -85,16 +87,18 @@ def main():
         sniffer.ioctl(socket.SIO_RCVALL, socket.RCVALL_ON)
 
     try:
+        count = 0
         while True:
             # read in a packet
             raw_buffer = sniffer.recvfrom(65565)[0]
-            hexdump(raw_buffer)
+            count += 1
             # create an IP header from the first 20 bytes of the buffer
             ip_header = IP(raw_buffer[0:20])
+            # hexdump(raw_buffer)
             # print out the protocol that was detected and the hosts
-            print "Protocol: %s %s -> %s" % (ip_header.protocol,
-                                             ip_header.src_address,
-                                             ip_header.dst_address)
+            print "Protocol: %s\t %s\t -> %s\t" % (ip_header.protocol,
+                                                 ip_header.src_address,
+                                                 ip_header.dst_address)
 
             if ip_header.protocol == "ICMP":
                 # calculate where our ICMP packet starts
