@@ -1,6 +1,7 @@
 import hashlib
 import itertools
 
+charset = string.printable
 charset = ''.join([chr(i) for i in range(128)])
 
 
