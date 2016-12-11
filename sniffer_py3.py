@@ -6,16 +6,16 @@ from ctypes import *
 
 def hexdump(src, length=16):
     result = []
-    digits = 4 if isinstance(src, unicode) else 2
+    digits = 4 if isinstance(src, str) else 2
 
-    for i in xrange(0, len(src), length):
+    for i in range(0, len(src), length):
         s = src[i:i+length]
-        hexa = b' '.join(["%0*X" % (digits, ord(x)) for x in s])
-        text = b''.join([x if 0x20 <= ord(x) < 0x7F else b'.' for x in s])
-        result.append(b"%04X   %-*s   %s" %
+        hexa = (' '.join(["%0*X" % (digits, x) for x in s])).encode('ascii')
+        text = (''.join([chr(x) if 0x20 <= x < 0x7F else '.' for x in s])).encode('ascii')
+        result.append("%04X   %-*s   %s" %
                       (i, length*(digits + 1), hexa, text))
 
-    print b'\n'.join(result)
+    print('\n'.join(result))
 
 
 class IP(Structure):
@@ -94,15 +94,12 @@ def main():
             count += 1
             # create an IP header from the first 20 bytes of the buffer
             ip_header = IP(raw_buffer[0:20])
-            
-            if ip_header.src_address != "192.168.1.101" or ip_header.dst_address != "192.168.1.101":
-                continue
-
-            hexdump(raw_buffer)
             # print out the protocol that was detected and the hosts
-            print "Protocol: %s\t %s\t -> %s\t" % (ip_header.protocol,
+            '''
+            print("Protocol: %s\t %s\t -> %s\t" % (ip_header.protocol,
                                                  ip_header.src_address,
-                                                 ip_header.dst_address)
+                                                 ip_header.dst_address))
+            '''
 
             if ip_header.protocol == "ICMP":
                 # calculate where our ICMP packet starts
@@ -110,7 +107,9 @@ def main():
                 buf = raw_buffer[offset:offset + sizeof(ICMP)]
                 # create our ICMP structure
                 icmp_header = ICMP(buf)
-                print "ICMP -> Type: %d Code: %d" % (icmp_header.type, icmp_header.code)
+                print("ICMP -> Type: %d Code: %d" % (icmp_header.type, icmp_header.code))
+                print("Src: %s -> Dst: %s" % (ip_header.src_address, ip_header.dst_address))
+                hexdump(raw_buffer)
 
     # handle CTRL-C
     except KeyboardInterrupt:

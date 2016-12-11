@@ -4,7 +4,10 @@
 import sys
 import argparse
 from time import sleep
+
 import requests
+
+from detect import detect
 
 __author__ = 'sph7'
 __DEBUG__ = False
@@ -34,9 +37,11 @@ def main():
                         help='run with list model')
     parser.add_argument('-f', '--file', metavar='file',
                         default='',
-                        help='run with file model')    
+                        help='run with file model')
     parser.add_argument('-p', '--php', action="store_true",
                         help='run with php model')
+    parser.add_argument('-d', '--detect', action="store_true",
+                        help='run with detect model')
     parser.add_argument('--proxy', metavar='proxy',
                         default='',
                         help='use proxy')
@@ -56,11 +61,13 @@ def main():
 
     url = parseUrl(url)
 
-    timeout = opts.timeout if opts.timeout else 5
-
-    if not (opts.list or opts.file or opts.php):
+    if not (opts.list or opts.file or opts.php or opts.detect):
         sys.stderr.write('please at least choose a model')
         sys.exit(1)
+
+    timeout = opts.timeout if opts.timeout else 5
+
+    entities = []
 
     x = ['']
 
@@ -83,8 +90,6 @@ def main():
     if opts.php:
         from wordlist import phps
         x += map(lambda i: i + '.php', phps)
-
-    re = []
 
     # print x
 
@@ -116,15 +121,18 @@ def main():
                       proxies=proxies, verify=False)
             print(url+i), '\tstatus code: ', r.status_code
             if r.status_code < 400:
-                re.append(url+i)
+                entities.append(i)
         except Exception, e:
             print e
 
-    print 'exists:', re
+    if opts.detect:
+        entities = detect(s, entities, url, headers, timeout, proxies)
+
+    entities = map(lambda i: url + i, entities)
+    print 'exists:', entities
 
 if __name__ == '__main__':
 
     main()
 
 # testcase: python scan.py -l -f index.php,flag.php -t 0 -u localhost
-
