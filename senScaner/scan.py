@@ -129,7 +129,10 @@ def main():
         entities = detect(s, entities, url, headers, timeout, proxies)
 
     entities = map(lambda i: url + i, entities)
-    print 'exists:', entities
+    
+    print 'exists:'
+    for i in entities:
+        print i
 
 if __name__ == '__main__':
 
