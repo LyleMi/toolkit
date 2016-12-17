@@ -76,6 +76,9 @@ def main():
     if opts.list:
         from wordlist import pathlist
         x += pathlist
+        # tmp = open("dict/dict.txt", "r")
+        # x += [i.strip("\n") for i in tmp]
+        # tmp.close()
 
     # print x
 
