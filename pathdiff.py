@@ -1,26 +1,66 @@
+# -*- coding: utf-8 -*-
+
 import os
+import pickle
 from hashlib import sha256
 
+filelist = {}
 
-def sha2(s):
-    return sha256(str(s)).hexdigest()
+class PathTree(object):
+    
+    """docstring for PathTree"""
+
+    def __init__(self, path, level = 0, debug = False):
+        self.path = path
+        self.level = level
+        self.debug = debug
+        self.childpath = []
+
+        # print retract + 'init path:', path
+
+        for i in os.listdir(path):
+
+            tmp = os.path.join(path, i)
+            
+            self.retractPrint(i)
+            
+            if os.path.isdir(tmp):
+                self.childpath.append(PathTree(tmp, level + 1))
+            elif os.path.isfile(tmp):
+                filelist[tmp] = filesha(tmp)
+
+    def retractPrint(self, s):
+        if self.debug:
+            print self.level * '  ', s
 
 
 def filesha(path):
     tmp = open(path, 'r')
-    s = sha2(tmp.read())
+    s = sha256(tmp.read()).hexdigest()
     tmp.close()
     return s
 
+def diff(oldlist, newlist):
 
-def traverseDir(path):
-    print 'init path:', path
-    for i in os.listdir(path):
-        if os.path.isdir(i):
-            print 'dir', os.path.join(path, i)
-            traverseDir(os.path.join(path, i))
-        elif os.path.isfile(i):
-            print 'file', i, "sha", filesha(i)
+    for i in oldlist.keys():
+
+        if i not in newlist.keys():
+            print i, "have been deleted"
+        elif oldlist[i] == newlist[i]:
+            pass
+        elif oldlist[i] != newlist[i]:
+            print i, "changed"
+
+    for i in newlist.keys():
+        if i not in oldlist.keys():
+            print "new file", i
 
 if __name__ == '__main__':
-    traverseDir(os.getcwd())
+    x = PathTree(os.getcwd())
+    pkl_file = open('data.pkl', 'rb')
+    # output = open('data.pkl', 'wb')
+    # pickle.dump(filelist, output)
+    oldlist = pickle.load(pkl_file)
+    diff(oldlist, filelist)
+    pkl_file.close()
+    # output.close()

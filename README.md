@@ -14,3 +14,5 @@ some tool for fun
     simple socket server/client
 * sniffer
     sniffer for fun
+* pathdiff
+    monitor a dir
