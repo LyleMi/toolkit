@@ -16,3 +16,6 @@ some tool for fun
     sniffer for fun
 * pathdiff
     monitor a dir
+    show wether file is changed
+* colorize
+    colorize text
