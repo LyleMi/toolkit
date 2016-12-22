@@ -80,23 +80,28 @@ def main():
 
     opts = parser.parse_args()
 
-    if (not opts.init) and (not (opts.first and opts.second)):
+    if (not opts.init) and (not opts.first):
         parser.print_help()
         exit()
 
     if opts.init:
         x = PathTree(os.getcwd())
-        output = open(time.strftime("%Y-%m-%d-%H-%M-%S") + '.pkl', 'wb')
+        output = open(time.strftime("%d-%H-%M-%S") + '.pkl', 'wb')
         pickle.dump(filelist, output)
         output.close()
     else:
         pkl_one = open(opts.first, 'rb')
         list_one = pickle.load(pkl_one)
-        pkl_two = open(opts.second, 'rb')
-        list_two = pickle.load(pkl_two)
-        diff(list_one, list_two)
+
+        if not opts.second:
+           x = PathTree(os.getcwd())
+           diff(list_one, filelist)
+        else:
+            pkl_two = open(opts.second, 'rb')
+            list_two = pickle.load(pkl_two)
+            diff(list_one, list_two)
+            pkl_two.close()
         pkl_one.close()
-        pkl_two.close()
 
 if __name__ == '__main__':
     main()
