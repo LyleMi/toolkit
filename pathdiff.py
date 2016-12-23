@@ -6,38 +6,31 @@ import sys
 import time
 import argparse
 from hashlib import sha256
+from time import sleep
 
 from colorize import colorize
 
-filelist = {}
 
+def traverseDir(path, level=0):
+    filelist = {}
+    # print retract + 'init path:', path
 
-class PathTree(object):
+    for i in os.listdir(path):
 
-    """docstring for PathTree"""
+        tmp = os.path.join(path, i)
 
-    def __init__(self, path, level=0, debug=False):
-        self.path = path
-        self.level = level
-        self.debug = debug
-        self.childpath = []
+        # retractPrint(i)
 
-        # print retract + 'init path:', path
+        if os.path.isdir(tmp):
+            filelist.update(traverseDir(tmp, level + 1))
+        elif os.path.isfile(tmp):
+            filelist[tmp] = filesha(tmp)
 
-        for i in os.listdir(path):
+    return filelist
 
-            tmp = os.path.join(path, i)
-
-            self.retractPrint(i)
-
-            if os.path.isdir(tmp):
-                self.childpath.append(PathTree(tmp, level + 1))
-            elif os.path.isfile(tmp):
-                filelist[tmp] = filesha(tmp)
-
-    def retractPrint(self, s):
-        if self.debug:
-            print self.level * '  ', s
+# def retractPrint(self, s):
+#     if debug:
+#         print level * '  ', s
 
 
 def filesha(path):
@@ -77,6 +70,10 @@ def main():
     parser.add_argument('-s', '--second', metavar='second',
                         default='',
                         help='second path file to diff')
+    parser.add_argument('-p', '--persistent', action="store_true",
+                        help='run in persistent mode')
+    parser.add_argument("-t", '--timesleep', type=int,
+                        dest="timesleep", help="set sleeptime", default=10)
 
     opts = parser.parse_args()
 
@@ -85,23 +82,36 @@ def main():
         exit()
 
     if opts.init:
-        x = PathTree(os.getcwd())
+        x = traverseDir(os.getcwd())
         output = open(time.strftime("%d-%H-%M-%S") + '.pkl', 'wb')
-        pickle.dump(filelist, output)
+        pickle.dump(x, output)
         output.close()
-    else:
-        pkl_one = open(opts.first, 'rb')
-        list_one = pickle.load(pkl_one)
+        return
 
-        if not opts.second:
-           x = PathTree(os.getcwd())
-           diff(list_one, filelist)
-        else:
-            pkl_two = open(opts.second, 'rb')
-            list_two = pickle.load(pkl_two)
-            diff(list_one, list_two)
-            pkl_two.close()
-        pkl_one.close()
+    pkl_one = open(opts.first, 'rb')
+    list_one = pickle.load(pkl_one)
+    pkl_one.close()
+
+    if opts.persistent:
+        while True:
+            try:
+                sleep(opts.timesleep)
+                x = traverseDir(os.getcwd())
+                diff(list_one, x)
+                print "-------------- one round --------------\n"
+            except Exception, e:
+                print e
+                return
+
+    if not opts.second:
+        x = traverseDir(os.getcwd())
+        diff(list_one, x)
+    else:
+        pkl_two = open(opts.second, 'rb')
+        list_two = pickle.load(pkl_two)
+        diff(list_one, list_two)
+        pkl_two.close()
+
 
 if __name__ == '__main__':
     main()
