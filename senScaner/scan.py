@@ -117,6 +117,7 @@ def main():
         sleep(opts.timeout)
 
         if __DEBUG__:
+            print i
             continue
 
         try:
