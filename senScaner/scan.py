@@ -65,7 +65,7 @@ def main():
         sys.stderr.write('please at least choose a model')
         sys.exit(1)
 
-    timeout = opts.timeout if opts.timeout else 5
+    timeout = opts.timeout if opts.timeout else 50
 
     entities = []
 

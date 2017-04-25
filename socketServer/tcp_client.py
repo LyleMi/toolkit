@@ -10,7 +10,7 @@ if __name__ == '__main__':
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     try:
         client.connect((host, port))
-        client.send('data to be send')
+        client.send('A' * 0x1040)
         print 'recv: ', client.recv(4096)
     finally:
         client.close()
