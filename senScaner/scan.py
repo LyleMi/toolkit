@@ -123,7 +123,8 @@ def main():
         try:
             r = s.get(url+i, headers=headers, timeout=timeout,
                       proxies=proxies, verify=False)
-            print(url+i), '\tstatus code: ', r.status_code
+            print '%s\t, status code: %d, len: %d' % (url+i, r.status_code,
+                                                          len(r.content))
             if r.status_code < 400:
                 entities.append(i)
         except Exception, e:
@@ -133,7 +134,7 @@ def main():
         entities = detect(s, entities, url, headers, timeout, proxies)
 
     entities = map(lambda i: url + i, entities)
-    
+
     print 'exists:'
     for i in entities:
         print i
