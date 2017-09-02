@@ -30,7 +30,7 @@ def crack2(x):
     for k in range(1, len(charset) + 1):
         for i in itertools.permutations(charset, k):
             s = ''.join(i)
-            if md5(s)[:4] == x:
+            if md5(s)[:6] == x:
                 print s
                 return True
 

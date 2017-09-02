@@ -4,7 +4,7 @@ pathlist += ['.idea', '.DS_Store', '.htaccess']
 pathlist += ['admin', 'root', 'system']
 pathlist += ['robots.txt', 'crossdomain.xml', 'sitemap.xml']
 pathlist += ['phpshe.tar.gz', '.viminfo']
-pathlist += ['passwd', '.htaccess', '.htpasswd']
+pathlist += ['passwd', '.htaccess', '.htpasswd', 'server-status']
 
 suffixlist = ['', '~', 's', '.bak', '.txt', '.rar']
 suffixlist += ['.src', '.inc', '.tmp']
