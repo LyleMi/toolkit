@@ -9,7 +9,6 @@ import requests
 
 from detect import detect
 
-__author__ = 'sph7'
 __DEBUG__ = False
 # __DEBUG__ = True
 

@@ -2,6 +2,7 @@
 
 my little toolkit project, write some tool for fun and practice
 
+* ctf-web: used to help test ctf web challs 
 * encoding: simple web encoding conversion tool
 * exhaustion: used to exhaustive hash or password
 * misc
