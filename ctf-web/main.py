@@ -11,12 +11,16 @@ class CTFBase(object):
 
     url = ""
     cookie = ""
+    proxies = {}
+    timeout = 20
+    verify = False
 
     def __init__(self):
         super(CTFBase, self).__init__()
         self.s = requests.Session()
-        self.defaultlevel = "debug"
+        self.loglevel = "debug"
         self.logger = logger
+        self.ua = randua()
 
     def cookieHeader(self, headers={}, cookie=""):
         headers["Cookie"] = cookie if cookie else self.cookie
@@ -36,6 +40,26 @@ class CTFBase(object):
     def setCookie(self):
         self.cookie = raw_input("Input cookie: ")
 
+    def setUa(self):
+        self.ua = raw_input("Input UA: ")
+
+    def get(self, url, params={}, headers={},
+            timeout=self.timeout, verify=self.verify):
+        r = self.s.get(url, params=params,
+                       headers=headers, timeout=timeout,
+                       verify=verify)
+        self.log(r.content, "verbose")
+        return r
+
+    def post(self, url, params={}, data=data,
+             headers={}, timeout=self.timeout,
+             verify=self.verify):
+        r = self.s.post(url, params=params, data=data,
+                        headers=headers, timeout=timeout,
+                        verify=verify)
+        self.log(r.content, "verbose")
+        return r
+
     def interactive(self):
         while True:
             cmd = raw_input(">>> ")
@@ -53,9 +77,12 @@ class CTFBase(object):
 
     def log(self, msg, level=""):
         if level == "":
-            level = self.defaultlevel
+            level = self.loglevel
+        level = level.lower()
 
-        if level == "debug":
+        if level == "verbose":
+            pass
+        elif level == "debug":
             self.logger.debug(msg)
         elif level == "info":
             self.logger.info(msg)
