@@ -16,6 +16,9 @@ class CTFBase(object):
     verify = False
 
     def __init__(self):
+        """
+        :param s: store requests session
+        """
         super(CTFBase, self).__init__()
         self.s = requests.Session()
         self.loglevel = "debug"
