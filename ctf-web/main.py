@@ -9,18 +9,19 @@ from utils.common import randua
 
 class CTFBase(object):
 
-    url = ""
     cookie = ""
     proxies = {}
     timeout = 20
     verify = False
 
-    def __init__(self):
+    def __init__(self, url=""):
         """
         :param s: store requests session
+        :param url: main url
         """
         super(CTFBase, self).__init__()
         self.s = requests.Session()
+        self.url = url
         self.loglevel = "debug"
         self.logger = logger
         self.ua = randua()
@@ -37,30 +38,47 @@ class CTFBase(object):
         headers["User-Agent"] = UA if UA else randua()
         return headers
 
-    def setUrl(self):
-        self.url = raw_input("Input url: ")
-
-    def setCookie(self):
-        self.cookie = raw_input("Input cookie: ")
-
-    def setUa(self):
-        self.ua = raw_input("Input UA: ")
-
-    def get(self, url, params={}, headers={},
-            timeout=self.timeout, verify=self.verify):
-        r = self.s.get(url, params=params,
-                       headers=headers, timeout=timeout,
-                       verify=verify)
-        self.log(r.content, "verbose")
+    def get(self, path, params={}, headers={},
+            timeout=None, verify=None, useSession=True,
+            pHeader=False, pContent=False):
+        if timeout is None:
+            timeout = self.timeout
+        if verify is None:
+            verify = self.verify
+        if useSession:
+            r = self.s.get(self.url + path, params=params,
+                           headers=headers, timeout=timeout,
+                           verify=verify)
+        else:
+            r = requests.get(self.url + path, params=params,
+                             headers=headers, timeout=timeout,
+                             verify=verify)
+        if pHeader:
+            self.log(r.headers)
+        if pContent:
+            self.log(r.content)
         return r
 
-    def post(self, url, params={}, data=data,
-             headers={}, timeout=self.timeout,
-             verify=self.verify):
-        r = self.s.post(url, params=params, data=data,
-                        headers=headers, timeout=timeout,
-                        verify=verify)
-        self.log(r.content, "verbose")
+    def post(self, path, params={}, data={},
+             headers={}, timeout=None,
+             verify=None, useSession=True,
+             pHeader=False, pContent=False):
+        if timeout is None:
+            timeout = self.timeout
+        if verify is None:
+            verify = self.verify
+        if useSession:
+            r = self.s.post(self.url + path, params=params, data=data,
+                            headers=headers, timeout=timeout,
+                            verify=verify)
+        else:
+            r = requests.post(self.url + path, params=params, data=data,
+                              headers=headers, timeout=timeout,
+                              verify=verify)
+        if pHeader:
+            self.log(r.headers)
+        if pContent:
+            self.log(r.content)
         return r
 
     def interactive(self):
@@ -68,6 +86,13 @@ class CTFBase(object):
             cmd = raw_input(">>> ")
             if cmd in ["exit", "quit"]:
                 return
+            elif cmd == "set":
+                key = raw_input(">>> set what? : ")
+                value = raw_input(">>> vaule? : ")
+                self.__setattr__(key, value)
+                print "set self.%s with value %s" \
+                    % (key, self.__getattribute__(key))
+                continue
             try:
                 call = self.__getattribute__(cmd)
             except AttributeError, e:
@@ -97,5 +122,8 @@ class CTFBase(object):
             self.logger.critical(msg)
 
 if __name__ == '__main__':
-    c = CTFBase()
-    c.interactive()
+    c = CTFBase("http://localhost/")
+    # c.interactive()
+    c.get("")
+    c.get("", pHeader=True)
+    c.get("", pContent=True)
