@@ -1,10 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import sys
+import time
+import argparse
 import requests
 
 from classes.prettytable import PrettyTable
+from utils.domain import parseUrl
 from utils.logger import logger
+from utils.mprint import printHeader
 
 
 class CTFBase(object):
@@ -21,7 +26,7 @@ class CTFBase(object):
         """
         super(CTFBase, self).__init__()
         self.s = requests.Session()
-        self.url = url
+        self.url = parseUrl(url)
         self.loglevel = "debug"
         self.logger = logger
 
@@ -40,10 +45,11 @@ class CTFBase(object):
             r = requests.get(self.url + path, params=params,
                              headers=headers, timeout=timeout,
                              verify=verify)
+
         if pHeader:
-            self.log(r.headers)
+            printHeader(r.headers)
         if pContent:
-            self.log(r.content)
+            print r.content
         return r
 
     def post(self, path, params={}, data={},
@@ -63,7 +69,7 @@ class CTFBase(object):
                               headers=headers, timeout=timeout,
                               verify=verify)
         if pHeader:
-            self.log(r.headers)
+            printHeader(r.headers)
         if pContent:
             self.log(r.content)
         return r
@@ -108,14 +114,21 @@ class CTFBase(object):
         elif level == "critical":
             self.logger.critical(msg)
 
-    def scanlist(self):
+    def scan(self, ext="php", filename="", interval=0):
         exists = []
         x = PrettyTable()
-        x._set_field_names(["Path", "Status", "len"])
+        x._set_field_names(["Path", "Status", "Len"])
         x.align["Path"] = "l"
         with open("./data/pathes.txt") as pathes:
             for p in pathes:
                 path = p.strip("\n")
+                if "%ext%" in path:
+                    path = path.replace("%ext%", ext)
+                elif "%filename%" in path:
+                    if not filename:
+                        continue
+                    path = path.replace("%filename%", filename)
+                time.sleep(interval)
                 r = self.get(path)
                 x.add_row([path, r.status_code, len(r.content)])
                 if r.status_code < 400:
@@ -125,5 +138,39 @@ class CTFBase(object):
         self.log(exists)
 
 if __name__ == '__main__':
-    c = CTFBase("http://localhost/")
-    c.interactive()
+    parser = argparse.ArgumentParser(
+        description='ctf web intelligent tool',
+        usage='%(prog)s [options]',
+        epilog='This is a ctf web intelligent tool')
+    parser.add_argument('-s', '--scan', action="store_true",
+                        help='run with list model')
+    parser.add_argument('-f', '--file', metavar='file',
+                        default='',
+                        help='scan specific file')
+    parser.add_argument('-e', '--ext', metavar='ext',
+                        default='php',
+                        help='scan specific ext')
+    parser.add_argument('-i', '--interactive', action="store_true",
+                        help='run with interactive model')
+    parser.add_argument("-u", '--url',
+                        dest="url", help="define specific url")
+    parser.add_argument("-t", '--timeinterval', type=int,
+                        dest="interval", help="set time interval", default=0)
+
+    opts = parser.parse_args()
+
+    url = opts.url
+
+    if not url:
+        sys.stderr.write('Url is required!')
+        sys.exit(1)
+
+    c = CTFBase(url)
+
+    if opts.scan:
+        c.scan(filename=opts.file,
+               interval=opts.interval,
+               ext=opts.ext)
+
+    if opts.interactive:
+        c.interactive()

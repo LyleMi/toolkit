@@ -1,3 +1,13 @@
+%filename%.bak
+%filename%.inc
+%filename%.rar
+%filename%.src
+%filename%.tmp
+%filename%.txt
+%filename%s
+%filename%~
+.%filename%.swo
+.%filename%.swp
 .DS_Store
 .git
 .git/HEAD
@@ -10,6 +20,9 @@
 WEB-INF/web.xml
 admin
 crossdomain.xml
+flag.%ext%
+index.%ext%
+info.%ext%
 passwd
 phpshe.tar.gz
 robots.txt
