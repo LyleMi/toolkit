@@ -3,8 +3,8 @@
 
 import requests
 
+from classes.prettytable import PrettyTable
 from utils.logger import logger
-from utils.common import randua
 
 
 class CTFBase(object):
@@ -24,21 +24,8 @@ class CTFBase(object):
         self.url = url
         self.loglevel = "debug"
         self.logger = logger
-        self.ua = randua()
 
-    def cookieHeader(self, headers={}, cookie=""):
-        headers["Cookie"] = cookie if cookie else self.cookie
-        return headers
-
-    def jsonHeader(self, headers={}):
-        headers["Content-type"] = "application/json"
-        return headers
-
-    def uaHeader(self, headers={}, UA=""):
-        headers["User-Agent"] = UA if UA else randua()
-        return headers
-
-    def get(self, path, params={}, headers={},
+    def get(self, path, params={}, headers={}, proxies={},
             timeout=None, verify=None, useSession=True,
             pHeader=False, pContent=False):
         if timeout is None:
@@ -48,7 +35,7 @@ class CTFBase(object):
         if useSession:
             r = self.s.get(self.url + path, params=params,
                            headers=headers, timeout=timeout,
-                           verify=verify)
+                           proxies=proxies, verify=verify)
         else:
             r = requests.get(self.url + path, params=params,
                              headers=headers, timeout=timeout,
@@ -60,7 +47,7 @@ class CTFBase(object):
         return r
 
     def post(self, path, params={}, data={},
-             headers={}, timeout=None,
+             proxies={}, headers={}, timeout=None,
              verify=None, useSession=True,
              pHeader=False, pContent=False):
         if timeout is None:
@@ -70,7 +57,7 @@ class CTFBase(object):
         if useSession:
             r = self.s.post(self.url + path, params=params, data=data,
                             headers=headers, timeout=timeout,
-                            verify=verify)
+                            proxies=proxies, verify=verify)
         else:
             r = requests.post(self.url + path, params=params, data=data,
                               headers=headers, timeout=timeout,
@@ -121,9 +108,22 @@ class CTFBase(object):
         elif level == "critical":
             self.logger.critical(msg)
 
+    def scanlist(self):
+        exists = []
+        x = PrettyTable()
+        x._set_field_names(["Path", "Status", "len"])
+        x.align["Path"] = "l"
+        with open("./data/pathes.txt") as pathes:
+            for p in pathes:
+                path = p.strip("\n")
+                r = self.get(path)
+                x.add_row([path, r.status_code, len(r.content)])
+                if r.status_code < 400:
+                    exists.append(path)
+        print x.get_string()
+        self.log("exists")
+        self.log(exists)
+
 if __name__ == '__main__':
     c = CTFBase("http://localhost/")
-    # c.interactive()
-    c.get("")
-    c.get("", pHeader=True)
-    c.get("", pContent=True)
+    c.interactive()

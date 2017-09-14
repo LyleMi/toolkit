@@ -1,0 +1,7 @@
+.bak
+.inc
+.rar
+.src
+.tmp.txt
+s
+~
