@@ -1,7 +1,8 @@
 # toolkit
 
-my little toolkit project, write some tool for fun and practice
+my little toolkit project, write some tool or code snipt for fun and practice
 
+* dbwrapper: some db wrapper for sqlite/mysql/mongo/es
 * encoding: simple web encoding conversion tool
 * exhaustion: used to exhaustive hash or password
 * misc

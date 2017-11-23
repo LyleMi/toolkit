@@ -1,3 +1,10 @@
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
+'''
+Tool for colorize output
+'''
+
 # color names to indices
 color_map = {
     'black': 0,
@@ -20,7 +27,7 @@ effect_map = {
 }
 
 # levels to (background, foreground, bold/intense)
-cyan =  (None, 'cyan', None)
+cyan = (None, 'cyan', None)
 green = (None, 'green', None)
 yellow = (None, 'yellow', None)
 red = (None, 'red', None)
