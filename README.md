@@ -7,7 +7,7 @@ my little toolkit project, write some tool or code snipt for fun and practice
 * exhaustion: used to exhaustive hash or password
 * misc
     * colorize: colorize text tool
-    * edgedbg: script for debug Edge
+    * windbghelper: script for debug Edge / IE
     * path diff: tool used to monitor file changes
     * logger: python logging code snipet
 * socketServer: socket server/client
