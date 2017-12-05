@@ -11,8 +11,18 @@ import os
 import sys
 import subprocess
 
-PFiles = os.environ.get('PROGRAMFILES', 'C:\\Program Files')
-PFilesx86 = os.environ.get('PROGRAMFILES(X86)', 'C:\\Program Files(X86)')
+
+def getProgramFiles():
+    PFiles = set()
+    PFiles.add(os.environ.get('PROGRAMFILES', 'C:\\Program Files'))
+    PFiles.add(os.environ.get('PROGRAMFILES(X86)', 'C:\\Program Files(X86)'))
+    PFiles.add('C:\\Program Files')
+    PFiles.add('C:\\Program Files(X86)')
+    tmp = set()
+    for r in ["D:", "E:", "F:", "G:"]:
+        for p in PFiles:
+            tmp.add(p.replace("C:", r))
+    return list(tmp.union(PFiles))
 
 
 def getArch():
@@ -26,7 +36,24 @@ def getArch():
     return "x64" if arch == "AMD64" else "x86"
 
 
-def getEdgeVer(xmlpath=""):
+def getChromeVersion(path=""):
+    import re
+    version = os.listdir(path)
+    version = filter(lambda i: re.match(
+        r"^([0-9]{2})(.[0-9]{1,4}){3}$", i), version)
+    return sorted(version)[-1]
+
+
+def getFFVersion(path=""):
+    path = os.path.join(path, "application.ini")
+    ini = open(path).read().split()
+    for i in ini:
+        if i.startswith("Version="):
+            return i.split("=")[1]
+    return None
+
+
+def getEdgeVersion(xmlpath=""):
 
     if not xmlpath:
         xmlpath = "C:\\Windows\\SystemApps\\"
@@ -39,12 +66,21 @@ def getEdgeVer(xmlpath=""):
     return open(xmlpath).read().split('Version="')[1].split('"')[0]
 
 
+def getIEVersion(path=""):
+    path = os.path.join(path, "SIGNUP", "install.ins")
+    ini = open(path).read().replace("\x00", "").split()
+    for i in ini:
+        if i.startswith("Version="):
+            return i.split("=")[1].replace(",", ".")
+    return None
+
+
 def getWindbPath(arch):
 
     dbgPath = "%s\\Windows Kits\\%s\\Debuggers\\%s\\WinDbg.exe"
 
     for winVer in ["10", "8.1", "8.0"]:
-        for pf in [PFiles, PFilesx86]:
+        for pf in getProgramFiles():
             path = dbgPath % (pf, winVer, arch)
             if os.path.exists(path):
                 return path
@@ -52,14 +88,35 @@ def getWindbPath(arch):
     raise Exception("Windbg not found")
 
 
+def getChromePath():
+    path = getProgramFiles()
+    path = map(lambda i: os.path.join(
+        i, "Google", "Chrome", "Application"), path)
+    for p in path:
+        if os.path.exists(os.path.join(p, "chrome.exe")):
+            return p
+    raise Exception("Chrome not found")
+
+
+def getFFPath():
+    path = getProgramFiles()
+    path = map(lambda i: os.path.join(i, "Mozilla Firefox"), path)
+    for p in path:
+        if os.path.exists(os.path.join(p, "firefox.exe")):
+            return p
+    raise Exception("FireFox not found")
+
+
 def getIEPath(arch="32"):
+    paths = getProgramFiles()
     if arch == "32":
-        iepath = PFilesx86
+        paths = filter(lambda i: "(x86)" in i, paths)
     elif arch == "64":
-        iepath = PFiles
-    iepath = os.path.join(iepath, "Internet Explorer", "iexplore.exe")
-    if os.path.exists(iepath):
-        return iepath
+        paths = filter(lambda i: "(x86)" not in i, paths)
+    for p in paths:
+        iepath = os.path.join(p, "Internet Explorer")
+        if os.path.exists(iepath):
+            return iepath
     raise Exception("ie not found")
 
 
@@ -82,18 +139,19 @@ def getPid(process):
 if __name__ == '__main__':
 
     arch = getArch()
-    version = getEdgeVer()
+    version = getEdgeVersion()
     windbgPath = getWindbPath(arch)
 
     if len(sys.argv) > 1:
         target = sys.argv[1]
     else:
         target = "ie"
-    
+
     killProcess("windbg")
 
     if target.lower() == "edge":
-        packageName = "Microsoft.MicrosoftEdge_%s_neutral__8wekyb3d8bbwe" % version
+        packageName = "Microsoft.MicrosoftEdge_%s_neutral__8wekyb3d8bbwe"
+        packageName = packageName % version
         dbgCmd = '"%s" -plmPackage %s -plmApp MicrosoftEdge -g'
         dbgCmd = dbgCmd % (windbgPath, packageName)
         killProcess("MicrosoftEdge")
@@ -104,7 +162,7 @@ if __name__ == '__main__':
             url = sys.argv[2]
         else:
             url = ""
-        os.system('"%s" %s' % (getIEPath(), url))
+        os.system('"%s" %s' % (os.path.join(getIEPath(), "iexplore.exe"), url))
         iepid = getPid("iexplore")[-1]
         dbgCmd = '"%s" -p %s -g' % (windbgPath, iepid)
         os.system(dbgCmd)

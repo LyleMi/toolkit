@@ -4,7 +4,6 @@ my little toolkit project, write some tool or code snipt for fun and practice
 
 * dbwrapper: some db wrapper for sqlite/mysql/mongo/es
 * encoding: encoding conversion tool
-* exhaustion: used to exhaustive hash or password
 * misc
     * colorize: colorize text tool
     * windbghelper: script for debug Edge / IE
