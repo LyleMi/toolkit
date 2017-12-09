@@ -1,6 +1,6 @@
 <?php
 
-require_once "/tmp/php-waf.php"
+require_once "/tmp/logger.php"
 
 define("LONE_LINE", '\n'.str_repeat('=', 21).'\n');
 

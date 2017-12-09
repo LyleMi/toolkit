@@ -10,12 +10,21 @@ $banuas = [
     "wvs",
 ];
 
-// $ua = strtolower($_SERVER["HTTP_USER_AGENT"]);
-$ua = 'sqlmap';
+$ua = strtolower($_SERVER["HTTP_USER_AGENT"]);
 
 foreach ($banuas as $banua) {
     if (strpos($ua, $banua) !== false) {
-        die("waf");
+        die(sendBomb());
+    }
+}
+
+$banips = [];
+
+$ip = $_SERVER["REMOTE_ADDR"];
+
+foreach ($banips as $banip) {
+    if ($banip == $ip) {
+        die();
     }
 }
 
