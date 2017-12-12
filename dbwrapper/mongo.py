@@ -10,9 +10,20 @@ class Mongo(object):
     MongoDB Client
     """
 
-    def __init__(self, db, collection):
+    def __init__(self, db, collection,
+                 ip="localhost", port=27017,
+                 user=None, pwd=None):
+        """
+        Args:
+            db (str): db to use
+            collection (str): collection to use
+            ip (str, optional): dbtabase ip
+            port (int, optional): dbtabase port
+        """
         super(Mongo, self).__init__()
-        self.conn = MongoClient('localhost')
+        self.conn = MongoClient(ip, port)
+        if user is not None and pwd is not None:
+            self.conn.authenticate(user, pwd)
         self.col = self.conn[db][collection]
 
     def insert(self, data):

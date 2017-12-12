@@ -114,8 +114,17 @@ def getIEPath(arch="32"):
     elif arch == "64":
         paths = filter(lambda i: "(x86)" not in i, paths)
     for p in paths:
-        iepath = os.path.join(p, "Internet Explorer")
-        if os.path.exists(iepath):
+        iepath = os.path.join(p, "Internet Explorer", "iexplore.exe")
+        if os.path.isfile(iepath):
+            return iepath
+    sysdir = "C:\\Windows\\WinSxS"
+    for d in os.listdir(sysdir):
+        if arch == "32" and d.startswith("amd64"):
+            continue
+        if arch == "64" and d.startswith("wow64"):
+            continue
+        iepath = os.path.join(sysdir, d, "iexplore.exe")
+        if os.path.isfile(iepath):
             return iepath
     raise Exception("ie not found")
 
@@ -162,7 +171,7 @@ if __name__ == '__main__':
             url = sys.argv[2]
         else:
             url = ""
-        os.system('"%s" %s' % (os.path.join(getIEPath(), "iexplore.exe"), url))
+        os.system('"%s" %s' % (getIEPath(), url))
         iepid = getPid("iexplore")[-1]
         dbgCmd = '"%s" -p %s -g' % (windbgPath, iepid)
         os.system(dbgCmd)
