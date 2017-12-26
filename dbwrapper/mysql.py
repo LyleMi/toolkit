@@ -1,16 +1,26 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+"""MySQL Database Wrapper
+"""
 
 import pymysql
 
 
 class DB(object):
 
-    """
-    MySQL Database Wrapper
+    """MySQL Database Wrapper
+    
+    Attributes:
+        conn (obj): mysql connection
+        cur (obj): mysql connection cursor
     """
 
     def __init__(self, opts):
+        """init connection
+        
+        Args:
+            opts (dict): mysql connection config
+        """
         self.conn = pymysql.connect(
             host=opts["host"],
             user=opts["user"],
@@ -21,25 +31,51 @@ class DB(object):
         self.cur = self.conn.cursor()
 
     def showDBs(self):
+        """show mysql dbs
+        
+        Returns:
+            dict: databases
+        """
         self.cur.execute('SHOW DATABASES')
         return [r[0] for r in self.cur.fetchall()]
 
     def showTables(self):
+        """show mysql tables
+        
+        Returns:
+            dict: tables
+        """
         self.cur.execute('SHOW TABLES')
         return [r[0] for r in self.cur.fetchall()]
 
     def insert(self, data):
+        """insert data
+        
+        Args:
+            data (str): data to be insterted
+        """
         sql = "INSERT INTO `test` (`test`) VALUES (%s)"
         self.cur.execute(sql, [data])
+        # self.cur.executemany(sql, [data])
         self.conn.commit()
 
     def select(self, data):
+        """select data
+        
+        Args:
+            data (str): condition
+        
+        Returns:
+            dict: select data
+        """
         sql = "SELECT * FROM test WHERE test = %s"
         self.cur.execute(sql, [data])
         # return self.conn.fetchone()
         return self.cur.fetchall()
 
     def close(self):
+        """close connection
+        """
         self.cur.close()
 
 if __name__ == '__main__':
