@@ -9,7 +9,7 @@ import pymysql
 class DB(object):
 
     """MySQL Database Wrapper
-    
+
     Attributes:
         conn (obj): mysql connection
         cur (obj): mysql connection cursor
@@ -17,7 +17,7 @@ class DB(object):
 
     def __init__(self, opts):
         """init connection
-        
+
         Args:
             opts (dict): mysql connection config
         """
@@ -32,7 +32,7 @@ class DB(object):
 
     def showDBs(self):
         """show mysql dbs
-        
+
         Returns:
             dict: databases
         """
@@ -41,37 +41,39 @@ class DB(object):
 
     def showTables(self):
         """show mysql tables
-        
+
         Returns:
             dict: tables
         """
         self.cur.execute('SHOW TABLES')
         return [r[0] for r in self.cur.fetchall()]
 
-    def insert(self, data):
-        """insert data
-        
-        Args:
-            data (str): data to be insterted
-        """
-        sql = "INSERT INTO `test` (`test`) VALUES (%s)"
-        self.cur.execute(sql, [data])
-        # self.cur.executemany(sql, [data])
-        self.conn.commit()
-
-    def select(self, data):
+    def select(self, sql, data=None):
         """select data
-        
+
         Args:
+            sql (str): sql query
             data (str): condition
-        
+
         Returns:
             dict: select data
         """
-        sql = "SELECT * FROM test WHERE test = %s"
-        self.cur.execute(sql, [data])
-        # return self.conn.fetchone()
+        self.cur.execute(sql, data)
         return self.cur.fetchall()
+
+    def insert(self, sql, data=None, multip=False):
+        """insert data
+
+        Args:
+            sql (str): sql query
+            data (str): data to be insterted
+            multip (bool, optional): executemany or one
+        """
+        if multip:
+            self.cur.executemany(sql, data)
+        else:
+            self.cur.execute(sql, data)
+        self.conn.commit()
 
     def close(self):
         """close connection
@@ -81,12 +83,18 @@ class DB(object):
 if __name__ == '__main__':
     opts = {
         "host": "localhost",
-        "user": "root",
-        "pwd": "vtu123456",
+        "user": "test",
+        "pwd": "test",
         "db": "test"
     }
     db = DB(opts)
     print db.showDBs()
     print db.showTables()
-    db.insert('1')
-    print db.select('1')
+    db.cur.execute("delete from user")
+    sql = "INSERT INTO `user` (`username`, `password`) VALUES (%s, %s)"
+    db.insert(sql, ['admin', 'admin'])
+    db.insert(sql, [['2', '3'], ['4', '5']], True)
+    sql = "SELECT * FROM user WHERE username = %s"
+    print db.select(sql, 'admin')
+    sql = "SELECT * FROM user"
+    print db.select(sql)
