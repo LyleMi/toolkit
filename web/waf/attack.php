@@ -1,33 +1,5 @@
 <?php
 
-$banuas = [
-    "appscan",
-    "sqlmap",
-    "nessus",
-    "netsparker",
-    "webinspect",
-    "webreaver",
-    "wvs",
-];
-
-$ua = strtolower($_SERVER["HTTP_USER_AGENT"]);
-
-foreach ($banuas as $banua) {
-    if (strpos($ua, $banua) !== false) {
-        die(sendBomb());
-    }
-}
-
-$banips = [];
-
-$ip = $_SERVER["REMOTE_ADDR"];
-
-foreach ($banips as $banip) {
-    if ($banip == $ip) {
-        die();
-    }
-}
-
 function sendBomb()
 {
     // dd if=/dev/zero bs=1M count=1024 | gzip > 1G.gzip
