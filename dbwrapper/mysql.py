@@ -9,7 +9,7 @@ import pymysql
 class DB(object):
 
     """MySQL Database Wrapper
-
+    
     Attributes:
         conn (obj): mysql connection
         cur (obj): mysql connection cursor
@@ -17,7 +17,7 @@ class DB(object):
 
     def __init__(self, opts):
         """init connection
-
+        
         Args:
             opts (dict): mysql connection config
         """
@@ -32,7 +32,7 @@ class DB(object):
 
     def showDBs(self):
         """show mysql dbs
-
+        
         Returns:
             dict: databases
         """
@@ -41,7 +41,7 @@ class DB(object):
 
     def showTables(self):
         """show mysql tables
-
+        
         Returns:
             dict: tables
         """
@@ -50,11 +50,11 @@ class DB(object):
 
     def select(self, sql, data=None):
         """select data
-
+        
         Args:
             sql (str): sql query
             data (str): condition
-
+        
         Returns:
             dict: select data
         """
@@ -63,10 +63,10 @@ class DB(object):
 
     def insert(self, sql, data=None, multip=False):
         """insert data
-
+        
         Args:
             sql (str): sql query
-            data (str): data to be insterted
+            data (str or list or tuple or dict): data to be insterted
             multip (bool, optional): executemany or one
         """
         if multip:
@@ -74,6 +74,14 @@ class DB(object):
         else:
             self.cur.execute(sql, data)
         self.conn.commit()
+
+    def execute(sql):
+        """excute raw sql
+        
+        Args:
+            sql (str): SQL query to be executed
+        """
+        self.cur.execute(sql)
 
     def close(self):
         """close connection
