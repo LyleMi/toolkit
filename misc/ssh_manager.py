@@ -8,58 +8,85 @@ import sqlite3
 DBPATH = "ssh.db"  # custom
 
 
+class DB(object):
+
+    def __init__(self, database="ssh.db"):
+        super(DB, self).__init__()
+        self.conn = sqlite3.connect(database)
+        self.create()
+
+    def create(self):
+        sql = '''
+        CREATE TABLE IF NOT EXISTS `ssh` (
+          `name` varchar(64) NOT NULL,
+          `ip` varchar(64) NOT NULL,
+          `host` varchar(64) NOT NULL,
+          `port` varchar(64) NOT NULL,
+          `comment` varchar(100) NOT NULL
+        );
+        '''
+        self.conn.execute(sql)
+
+    def get(self, name):
+        sql = "SELECT `ip`, `host`, `port` FROM ssh WHERE name = ?"
+        return self.conn.execute(sql, [name]).fetchone()
+
+    def add(self, info):
+        name = info[0]
+        if self.get(name) is not None:
+            print("%s already exist" % sys.argv[2])
+            return False
+        sql = "INSERT INTO `ssh` (`name`, `ip`, `host`, `port`, `comment`) VALUES (?, ?, ?, ?, ?)"
+        ip = info[1]
+        host = info[2] if len(info) > 2 else "root"
+        port = info[3] if len(info) > 3 else "22"
+        comment = " ".join(info[4:])
+        self.conn.execute(sql, [name, ip, host, port, comment])
+        self.conn.commit()
+
+    def delete(self, name):
+        sql = "DELETE FROM `ssh` WHERE name = ?"
+        self.conn.execute(sql, [name])
+        self.conn.commit()
+
+    def list(self):
+        sql = "SELECT `name`, `ip`, `host`, `port`, `comment` FROM ssh"
+        return self.conn.execute(sql).fetchall()
+
+
 def print_help():
-    print("python ssh_manager.py con [ssh_name]")
-    print("python ssh_manager.py add [ssh_name] [ip] [host] [port]")
+    print("python ssh_manager.py list")
+    print("python ssh_manager.py con [ssh_name] [command]")
+    print("python ssh_manager.py add [ssh_name] [ip] [host] [port] [comment]")
     print("python ssh_manager.py del [ssh_name]")
 
 
-def create_db():
-    conn = sqlite3.connect(DBPATH)
-    sql = '''
-    CREATE TABLE `ssh` (
-      `name` varchar(64) NOT NULL,
-      `ip` varchar(64) NOT NULL,
-      `host` varchar(64) NOT NULL,
-      `port` varchar(64) NOT NULL
-    );
-    '''
-    conn.execute(sql)
-
-
 def main():
-    conn = sqlite3.connect(DBPATH)
-    if len(sys.argv) < 3:
+    db = DB(DBPATH)
+    if len(sys.argv) < 2:
         print_help()
     elif sys.argv[1] == "con":
-        sql = "SELECT `ip`, `host`, `port` FROM ssh WHERE name = ?"
-        cursor = conn.execute(sql, [sys.argv[2]])
-        data = [i for i in cursor]
-        if len(data) < 1:
+        info = db.get(sys.argv[2])
+        if info is None:
             print("%s not found" % sys.argv[2])
         else:
-            data = data[0]
-            os.system("ssh %s@%s -p %s" % (data[1], data[0], data[2]))
+            cmd = "ssh %s@%s -p %s " % (info[1], info[0], info[2])
+            cmd += " ".join(sys.argv[3:])
+            os.system(cmd)
     elif sys.argv[1] == "add":
-        sql = "INSERT INTO `ssh` (`name`, `ip`, `host`, `port`) VALUES (?, ?, ?, ?)"
-        name = sys.argv[2]
-        ip = sys.argv[3]
-        if len(sys.argv) > 4:
-            host = sys.argv[4]
-        else:
-            host = "root"
-        if len(sys.argv) > 5:
-            port = sys.argv[5]
-        else:
-            port = "22"
-        conn.execute(sql, [name, ip, host, port])
-        conn.commit()
+        if db.add(sys.argv[2:]):
+            print("Add success")
     elif sys.argv[1] == "del":
-        sql = "DELETE FROM `ssh` WHERE name = ?"
-        conn.execute(sql, [sys.argv[2]])
-        conn.commit()
+        db.delete(sys.argv[2])
+    elif sys.argv[1] == "list":
+        for i in db.list():
+            print("\t".join(i))
     else:
         print_help()
+
+
+if __name__ == '__main__':
+    main()
 
 
 if __name__ == '__main__':
