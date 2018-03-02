@@ -63,5 +63,6 @@ def main():
 
 
 if __name__ == '__main__':
-    # create_db()
+    if not os.path.exists(DBPATH):
+        create_db()
     main()
