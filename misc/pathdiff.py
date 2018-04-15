@@ -1,5 +1,6 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# todo: add file mode
+
 
 import os
 import pickle
@@ -14,47 +15,31 @@ from colorize import colorize
 
 def traverseDir(path, level=0):
     filelist = {}
-    # print retract + 'init path:', path
-
     for i in os.listdir(path):
-
         tmp = os.path.join(path, i)
-
-        # retractPrint(i)
-
         if os.path.isdir(tmp):
             filelist.update(traverseDir(tmp, level + 1))
         elif os.path.isfile(tmp):
             filelist[tmp] = filesha(tmp)
-
     return filelist
-
-# def retractPrint(self, s):
-#     if debug:
-#         print level * '  ', s
 
 
 def filesha(path):
-    tmp = open(path, 'r')
-    s = sha256(tmp.read()).hexdigest()
-    tmp.close()
-    return s
+    with open(path, 'rb') as fh:
+        return sha256(fh.read()).hexdigest()
 
 
 def diff(oldlist, newlist):
-
     for i in oldlist.keys():
-
         if i not in newlist.keys():
-            print colorize("have been deleted: " + i, 'cyan')
+            print(colorize("have been deleted: " + i, 'cyan'))
         elif oldlist[i] == newlist[i]:
             pass
         elif oldlist[i] != newlist[i]:
-            print colorize("changed: " + i, 'green')
-
+            print(colorize("changed: " + i, 'green'))
     for i in newlist.keys():
         if i not in oldlist.keys():
-            print colorize("new file: " + i, 'red')
+            print(colorize("new file: " + i, 'red'))
 
 
 def main():
@@ -82,8 +67,10 @@ def main():
         parser.print_help()
         exit()
 
+    dstDir = os.getcwd()
+
     if opts.init:
-        x = traverseDir(os.getcwd())
+        x = traverseDir(dstDir)
         output = open(time.strftime("%d-%H-%M-%S") + '.pkl', 'wb')
         pickle.dump(x, output)
         output.close()
@@ -97,15 +84,15 @@ def main():
         while True:
             try:
                 sleep(opts.timesleep)
-                x = traverseDir(os.getcwd())
+                x = traverseDir(dstDir)
                 diff(list_one, x)
-                print "-------------- one round --------------\n"
-            except Exception, e:
-                print e
+                print("-------------- one round --------------")
+            except Exception as e:
+                print(e)
                 return
 
     if not opts.second:
-        x = traverseDir(os.getcwd())
+        x = traverseDir(dstDir)
         diff(list_one, x)
     else:
         pkl_two = open(opts.second, 'rb')
