@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # update source if needed
 sudo vi /etc/apt/sources.list
 
