@@ -19,6 +19,12 @@ sudo pip install --upgrade pip
 # zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
+# tmux
+sudo apt install tmux
+git clone https://github.com/gpakosz/.tmux.git
+ln -s -f .tmux/.tmux.conf
+cp .tmux/.tmux.conf.local .
+
 # peda
 sudo apt install gdb
 git clone https://github.com/longld/peda.git ~/peda
