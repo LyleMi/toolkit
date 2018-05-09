@@ -44,3 +44,8 @@ sudo pip install --upgrade tensorflow
 
 # postgresql
 sudo apt install postgresql postgresql-contrib
+
+# the fuck
+# https://github.com/nvbn/thefuck
+sudo apt install python3-dev python3-pip
+sudo pip3 install thefuck
