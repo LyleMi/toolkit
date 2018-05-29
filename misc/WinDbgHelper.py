@@ -156,21 +156,22 @@ if __name__ == '__main__':
     else:
         target = "ie"
 
+    if len(sys.argv) > 2:
+        url = sys.argv[2]
+    else:
+        url = ""
+
     killProcess("windbg")
 
     if target.lower() == "edge":
         packageName = "Microsoft.MicrosoftEdge_%s_neutral__8wekyb3d8bbwe"
         packageName = packageName % version
-        dbgCmd = '"%s" -plmPackage %s -plmApp MicrosoftEdge -g'
-        dbgCmd = dbgCmd % (windbgPath, packageName)
+        dbgCmd = '"%s" -plmPackage %s -g -plmApp MicrosoftEdge %s'
+        dbgCmd = dbgCmd % (windbgPath, packageName, url)
         killProcess("MicrosoftEdge")
         os.system(dbgCmd)
     elif target.lower() == "ie":
         killProcess("iexplore")
-        if len(sys.argv) > 2:
-            url = sys.argv[2]
-        else:
-            url = ""
         os.system('"%s" %s' % (getIEPath(), url))
         iepid = getPid("iexplore")[-1]
         dbgCmd = '"%s" -p %s -g' % (windbgPath, iepid)
