@@ -164,8 +164,11 @@ if __name__ == '__main__':
     killProcess("windbg")
 
     if target.lower() == "edge":
-        packageName = "Microsoft.MicrosoftEdge_%s_neutral__8wekyb3d8bbwe"
-        packageName = packageName % version
+        # packageName = "Microsoft.MicrosoftEdge_%s_neutral__8wekyb3d8bbwe"
+        # packageName = packageName % version
+        p = subprocess.Popen(["powershell", "-Command", "(Get-AppxPackage Microsoft.MicrosoftEdge).PackageFullName"], stdout=subprocess.PIPE)
+        p = p.communicate()[0]
+        packageName = p.decode('utf8').split('\n')[0].strip()
         dbgCmd = '"%s" -plmPackage %s -g -plmApp MicrosoftEdge %s'
         dbgCmd = dbgCmd % (windbgPath, packageName, url)
         killProcess("MicrosoftEdge")
