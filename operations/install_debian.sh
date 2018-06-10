@@ -31,6 +31,7 @@ git clone https://github.com/longld/peda.git ~/peda
 echo "source ~/peda/peda.py" >> ~/.gdbinit
 
 # pwntools
+# https://github.com/Gallopsled/pwntools
 sudo pip install --upgrade pwntools
 
 # ropgadget
