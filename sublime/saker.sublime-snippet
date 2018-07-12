@@ -1,0 +1,43 @@
+<snippet>
+    <content><![CDATA[
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from saker.main import Saker
+
+
+class Cli(Saker):
+
+    def __init__(self, url):
+        super(Cli, self).__init__(url)
+
+    def login(self, username, password="test"):
+        params = {"page": "login"}
+        data = {
+            "username": username,
+            "password": password,
+        }
+        self.post("", params=params, data=data)
+        print(self.lastr.content)
+
+    def register(self, username, password="test"):
+        params = {"page": "register"}
+        data = {
+            "username": username,
+            "password": password,
+        }
+        self.post("", params=params, data=data)
+        print(self.lastr.content)
+
+
+if __name__ == '__main__':
+    url = ""  # site url
+    c = Cli(url)
+
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>saker</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>
