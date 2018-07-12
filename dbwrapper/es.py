@@ -24,7 +24,7 @@ class ElasticSearchDB(object):
             index (str): default index
             doctype (str): default doc type
         """
-        self.client = elasticsearch.Elasticsearch(hosts=es_servers)
+        self.client = elasticsearch.Elasticsearch(hosts=servers)
         self.index = index
         self.doctype = doctype
 
