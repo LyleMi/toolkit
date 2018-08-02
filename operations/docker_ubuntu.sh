@@ -2,12 +2,12 @@
 
 # https://docs.docker.com/install/linux/docker-ce/ubuntu/
 
-sudo apt-get remove docker docker-engine docker.io
+sudo apt remove docker docker-engine docker.io
 
 # for ubuntu 14.x
-sudo apt-get install linux-image-extra-$(uname -r) linux-image-extra-virtual
+sudo apt install linux-image-extra-$(uname -r) linux-image-extra-virtual
 
-sudo apt-get install \
+sudo apt install \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -22,8 +22,8 @@ sudo add-apt-repository \
    $(lsb_release -cs) \
    stable"
 
-sudo apt-get update
-sudo apt-get install docker-ce
+sudo apt update
+sudo apt install docker-ce
 
 # docker compose
 sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
