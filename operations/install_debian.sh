@@ -1,10 +1,16 @@
 #!/bin/sh
 
 # update source if needed
-sudo vi /etc/apt/sources.list
+# sudo vi /etc/apt/sources.list
+
+echo '# Tsinghua deb source \n\
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse  \n\
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse \n\
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse \n\
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse'  >> /etc/apt/sources.list
 
 # install some tool for new machine
-sudo apt update && sudo apt upgrade
+sudo apt update && sudo apt upgrade -y
 
 # make tools
 sudo apt install cmake clang
@@ -20,7 +26,7 @@ sudo pip install --upgrade pip
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
- git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
  
 # tmux
 sudo apt install tmux
@@ -36,6 +42,9 @@ echo "source ~/peda/peda.py" >> ~/.gdbinit
 # pwntools
 # https://github.com/Gallopsled/pwntools
 sudo pip install --upgrade pwntools
+# sudo pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -U pwntools
+mkdir ~/.pwntools-cache
+echo never > ~/.pwntools-cache/update
 
 # ropgadget
 sudo pip install --upgrade ropgadget
