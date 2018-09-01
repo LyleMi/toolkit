@@ -23,6 +23,7 @@ sudo easy_install pip
 sudo pip install --upgrade pip
 
 # zsh
+# https://github.com/robbyrussell/oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -62,3 +63,8 @@ sudo apt install postgresql postgresql-contrib
 # https://github.com/nvbn/thefuck
 sudo apt install python3-dev python3-pip
 sudo pip3 install thefuck
+
+# https configure
+git clone https://github.com/certbot/certbot
+cd ./certbot
+./certbot-auto
