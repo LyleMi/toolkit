@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # https://docs.docker.com/install/linux/docker-ce/ubuntu/
+# curl -sSL https://get.docker.com/ | sudo sh
 
 sudo apt remove docker docker-engine docker.io
 
