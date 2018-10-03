@@ -40,6 +40,9 @@ sudo apt install gdb
 git clone https://github.com/longld/peda.git ~/peda
 echo "source ~/peda/peda.py" >> ~/.gdbinit
 
+git clone git://github.com/Mipu94/peda-heap.git ~/peda-heap
+echo "source ~/peda-heap/peda.py" >> ~/.gdbinit
+
 # pwntools
 # https://github.com/Gallopsled/pwntools
 sudo pip install --upgrade pwntools
