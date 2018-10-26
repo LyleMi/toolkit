@@ -4,22 +4,22 @@
 import sys
 
 pythonDoc = '''
-Virtual Env
+[Virtual Env]
 
-    virtualenv venv
-    . venv/bin/activate
+virtualenv venv
+. venv/bin/activate
 
-PIP
+[PIP]
 
-    pip freeze > requirements.txt
-    pip install -r requirements.txt
-    pip install -U
-    pip install --upgrade
-    pip install --force-reinstall
-    pip install -i https://pypi.tuna.tsinghua.edu.cn/simple xxxx
-    pip install -i https://mirrors.aliyun.com/pypi/simple xxxx
+pip freeze > requirements.txt
+pip install -r requirements.txt
+pip install -U
+pip install --upgrade
+pip install --force-reinstall
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple xxxx
+pip install -i https://mirrors.aliyun.com/pypi/simple xxxx
 
-Jupyter
+[Jupyter]
 
-    sudo jupyter notebook --ip 0.0.0.0 --allow-root
+sudo jupyter notebook --ip 0.0.0.0 --allow-root
 '''
