@@ -2,6 +2,7 @@
 
 my little toolkit project, write some tool or code snipt for fun and practice
 
+- cheatsheet: a simple cheat for fun
 - dbwrapper: some db wrapper for sqlite/mysql/mongo/es
 - encoding: encoding conversion tool with web UI
 - misc
