@@ -1,0 +1,28 @@
+<snippet>
+    <content><![CDATA[
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import requests
+
+s = requests.Session()
+url = ""
+params = {
+    "key": "value"
+}
+s.get(url, params=params)
+data = {
+    "key": "value"
+}
+files = {
+    "file": open("file", "rb")
+}
+s.post(url, data=data, files=files)
+
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>!req</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>
