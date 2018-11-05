@@ -23,18 +23,18 @@ python cheat.py shell <ip> <port>
 def main():
     if len(sys.argv) < 2:
         print("arg plz")
+    elif sys.argv[1] == "iptables":
+        print(iptablesDoc)
     elif sys.argv[1] == "linux":
         print(linuxDoc)
     elif sys.argv[1] == "python":
         print(pythonDoc)
     elif sys.argv[1] == "ssh":
         print(sshDoc)
-    elif sys.argv[1] == "tar":
-        print(compressDoc)
-    elif sys.argv[1] == "iptables":
-        print(iptablesDoc)
     elif sys.argv[1] == "shell":
         shellDoc(sys.argv[2:])
+    elif sys.argv[1] == "tar":
+        print(compressDoc)
     else:
         print("Keyword not found.")
         print(helpDoc)
