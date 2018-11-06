@@ -43,6 +43,14 @@ echo "source ~/peda/peda.py" >> ~/.gdbinit
 git clone git://github.com/Mipu94/peda-heap.git ~/peda-heap
 echo "source ~/peda-heap/peda.py" >> ~/.gdbinit
 
+# radare2
+git clone https://github.com/radare/radare2.git
+./radare2/sys/install.sh
+sduo pip install r2pipe
+
+# capstone
+sudo pip install capstone
+
 # pwntools
 # https://github.com/Gallopsled/pwntools
 sudo pip install --upgrade pwntools
