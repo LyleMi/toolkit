@@ -1,5 +1,6 @@
 #!/bin/sh
 
+sudo pip install --upgrade Pillow
 sudo pip install --upgrade opencv-python
 sudo pip install --upgrade numpy
 sudo pip install --upgrade matplotlib
