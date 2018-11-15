@@ -6,7 +6,7 @@ import sys
 from docs.linux import linuxDoc
 from docs.python import pythonDoc
 from docs.ssh import sshDoc
-from docs.compress import compressDoc
+from docs.compress import CompressDoc
 from docs.iptables import iptablesDoc
 from docs.shell import shellDoc
 
@@ -34,7 +34,7 @@ def main():
     elif sys.argv[1] == "shell":
         shellDoc(sys.argv[2:])
     elif sys.argv[1] == "tar":
-        print(compressDoc)
+        CompressDoc.show()
     else:
         print("Keyword not found.")
         print(helpDoc)
