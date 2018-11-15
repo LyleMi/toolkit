@@ -7,18 +7,31 @@ import requests
 
 s = requests.Session()
 url = ""
+
 params = {
     "key": "value"
 }
 s.get(url, params=params)
+
+headers = {
+    "User-Agent": "Python"
+}
+
 data = {
     "key": "value"
 }
+
 files = {
     "file": open("file", "rb")
 }
-s.post(url, data=data, files=files)
 
+proxies = {
+    "http": "http://127.0.0.1",
+    "https": "http://127.0.0.1"
+}
+
+r = s.post(url, params=params, data=data, headers=headers, files=files)
+print(r.content)
 
 ]]></content>
     <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
