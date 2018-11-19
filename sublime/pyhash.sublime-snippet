@@ -1,0 +1,14 @@
+<snippet>
+    <content><![CDATA[
+import hashlib
+
+
+def md5(s):
+    return hashlib.md5(s).hexdigest()
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>!pyhash</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.python</scope>
+</snippet>

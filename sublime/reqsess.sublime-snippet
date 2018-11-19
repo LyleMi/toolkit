@@ -1,0 +1,53 @@
+<snippet>
+    <content><![CDATA[
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import requests
+
+
+class Cli(object):
+
+    def __init__(self, url):
+        super(Cli, self).__init__()
+        self.url = url
+        self.s = requests.Session()
+
+    def get(self, path="", *args, **kwargs):
+        self.lastr = self.s.get(self.url + path, *args, **kwargs)
+        return self.lastr
+
+    def post(self, path="", *args, **kwargs):
+        self.lastr = self.s.post(self.url + path, *args, **kwargs)
+        return self.lastr
+
+    def login(self, username, password="test"):
+        params = {"page": "login"}
+        data = {
+            "username": username,
+            "password": password,
+        }
+        self.post("", params=params, data=data)
+        print(self.lastr.content)
+
+    def register(self, username, password="test"):
+        params = {"page": "register"}
+        data = {
+            "username": username,
+            "password": password,
+        }
+        self.post("", params=params, data=data)
+        print(self.lastr.content)
+
+
+if __name__ == '__main__':
+    url = ""  # site url
+    c = Cli(url)
+
+
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>!reqsess</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.python</scope>
+</snippet>
