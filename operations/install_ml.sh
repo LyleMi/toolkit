@@ -1,13 +1,16 @@
 #!/bin/sh
 
-sudo pip install --upgrade Pillow
-sudo pip install --upgrade opencv-python
-sudo pip install --upgrade numpy
-sudo pip install --upgrade matplotlib
-sudo pip install --upgrade tensorflow
-sudo pip install --upgrade pandas
-sudo pip install --upgrade seaborn
-sudo pip install --upgrade scipy
-sudo pip install --upgrade sklearn
-sudo pip install --upgrade keras
-sudo pip install --upgrade jupyter
+pip install --upgrade Pillow
+pip install --upgrade opencv-python
+pip install --upgrade numpy
+pip install --upgrade matplotlib
+pip install --upgrade tensorflow
+pip install --upgrade pandas
+pip install --upgrade seaborn
+pip install --upgrade scipy
+pip install --upgrade sklearn
+pip install --upgrade keras
+pip install --upgrade jupyter
+
+# https://github.com/kaggle/docker-python
+docker run --rm -it gcr.io/kaggle-images/python
