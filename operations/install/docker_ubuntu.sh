@@ -32,3 +32,8 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 # or install docker compose by pip
 sudo pip install docker-compose
+
+# add user to docker groupe
+sudo usermod -aG docker $USER
+sudo service docker restart
+newgrp - docker
