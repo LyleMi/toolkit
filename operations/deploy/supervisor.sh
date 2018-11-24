@@ -35,13 +35,16 @@ echo "user=root" >> $projectName.conf
 echo "stopsignal=INT" >> $projectName.conf
 echo "startsecs=1" >> $projectName.conf
 
+# start program
 supervisord -c /etc/supervisor/supervisord.conf
+supervisorctl start $projectName
 ps -ef | grep $projectName
 
 # stop all
 supervisorctl shutdown
 
-# start or stop program
-supervisorctl stop|start $projectName
+# stop program
+supervisorctl stop $projectName
 
+# check status
 supervisorctl status
