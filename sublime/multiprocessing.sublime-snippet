@@ -1,0 +1,25 @@
+<snippet>
+    <content><![CDATA[
+from multiprocessing import Process
+
+
+def do(arg):
+    pass
+
+
+processes = [
+    Process(
+        target=do,
+        args=(i, )
+    )
+    for i in range(5)
+]
+for p in processes:
+    p.start()
+
+for p in processes:
+    p.join()
+]]></content>
+    <tabTrigger>multiprocessing</tabTrigger>
+    <scope>source.python</scope>
+</snippet>
