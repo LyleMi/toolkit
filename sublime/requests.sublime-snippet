@@ -22,7 +22,8 @@ data = {
 }
 
 files = {
-    "file": open("file", "rb")
+    "file": open("file", "rb"),
+    "file2": ('filename', 'filecontent', 'content_type <option>'),
 }
 
 proxies = {
@@ -30,7 +31,13 @@ proxies = {
     "https": "http://127.0.0.1"
 }
 
-r = s.post(url, params=params, data=data, headers=headers, files=files)
+r = s.post(
+    url,
+    params=params,
+    data=data,
+    headers=headers,
+    files=files
+)
 print(r.content)
 
 ]]></content>
