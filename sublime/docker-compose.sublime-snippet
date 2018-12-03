@@ -1,0 +1,53 @@
+<snippet>
+    <content><![CDATA[
+version: '3'
+
+services:
+    web:
+        build: .
+        container_name: web_container
+        volumes:
+            - ./web:/home/ctf/
+        command: python app.py
+        restart: "always"
+        ports: 
+            - "8888:8888"
+        dns: 8.8.8.8
+        dns:
+            - 8.8.8.8
+            - 9.9.9.9
+        dns_search: example.com
+        dns_search:
+            - dc1.example.com
+            - dc2.example.com
+        tmpfs:
+            - /tmp
+        expose:
+            - "3000"
+            - "8000"
+        user: www-data
+        mem_limit: 1000000000
+        memswap_limit: 2000000000
+        depends_on:
+          - db
+        links:
+            - db
+        networks:
+            - default
+    db:
+        image: mysql:5.7
+        expose: 
+            - "3306"
+        environment:
+            MYSQL_DATABASE: ctf
+            MYSQL_USER: ctf
+            MYSQL_PASSWORD: ctf
+            MYSQL_ROOT_PASSWORD: ctf 
+        volumes:
+            - ./sql:/docker-entrypoint-initdb.d
+        networks:
+            - default
+]]></content>
+    <tabTrigger>dcom</tabTrigger>
+    <scope>source.yaml</scope>
+</snippet>
