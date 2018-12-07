@@ -21,7 +21,9 @@ encoding conversion tool with web UI
 
 ## misc
 
+- changemac: script for change mac address
 - colorize: colorize text tool
+- getwifipwd: get current wifi password
 - path diff: tool used to monitor file changes
 - logger: python logging code snipet
 - singleton: singleton demo for python
