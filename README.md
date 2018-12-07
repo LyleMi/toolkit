@@ -40,10 +40,6 @@ operations scripts
 - install moloch for ubuntu
 - install common tools and develop environment for ubuntu/centos
 
-## socketServer
-
-socket toy server/client
-
 ## sublime
 
 sublime code snippet and config
