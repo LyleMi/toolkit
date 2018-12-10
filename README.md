@@ -15,10 +15,6 @@ a simple cheatsheet
 
 some db wrapper for sqlite/mysql/mongo/es
 
-## encoding
-
-encoding conversion tool with web UI
-
 ## misc
 
 - changemac: script for change mac address
