@@ -6,10 +6,10 @@ from base import BaseDoc
 class MySQLDoc(BaseDoc):
 
     _doc = {
-        "create user": """CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
+        "user": """CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
 GRANT SELECT, INSERT, UPDATE, DELETE ON databasename.tablename TO 'username'@'host'
 GRANT all ON databasename.tablename TO 'username'@'host'""",
-        "update password": """UPDATE user SET password=PASSWORD('123456') WHERE user='root';
+        "password": """UPDATE user SET password=PASSWORD('123456') WHERE user='root';
 FLUSH PRIVILEGES;""",
         "insert": """INSERT INTO table_name (column_name) VALUES ("foo"),("bar");
 INSERT INTO table_name VALUES ('foo', '2000-08-31');""",

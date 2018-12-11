@@ -9,8 +9,14 @@ class BaseDoc(object):
     }
 
     @classmethod
-    def show(cls):
+    def show(cls, keys=False):
+        if keys and keys[0] == "keys":
+            for k in cls._doc.keys():
+                print(k)
+            return
         for doc in cls._doc:
+            if keys and doc not in keys:
+                continue
             print("[%s]\n" % doc)
             print("%s\n" % cls._doc[doc])
 

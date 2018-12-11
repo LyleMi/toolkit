@@ -8,8 +8,11 @@ a simple cheatsheet
 
 - compress command for multiple suffix
 - iptables command
+- linux command
+- mysql query
 - python command
 - reverse shell command
+- ssh related command
 
 ## dbwrapper
 

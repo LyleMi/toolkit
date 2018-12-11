@@ -36,9 +36,9 @@ def main():
     elif sys.argv[1] == "shell":
         shellDoc(sys.argv[2:])
     elif sys.argv[1] == "tar":
-        CompressDoc.show()
+        CompressDoc.show(sys.argv[2:])
     elif sys.argv[1] == "mysql":
-        MySQLDoc.show()
+        MySQLDoc.show(sys.argv[2:])
     else:
         print("Keyword not found.")
         print(helpDoc)
