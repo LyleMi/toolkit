@@ -25,3 +25,8 @@ echo never > ~/.pwntools-cache/update
 
 # ropgadget
 sudo pip install --upgrade ropgadget
+
+# pwndbg
+git clone https://github.com/pwndbg/pwndbg
+cd pwndbg
+./setup.sh

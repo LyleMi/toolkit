@@ -12,6 +12,9 @@ deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted 
 # install some tool for new machine
 sudo apt update && sudo apt upgrade -y
 
+# install for docker test
+sudo apt install inetutils-ping
+
 # make tools
 sudo apt install cmake clang
 
@@ -40,6 +43,17 @@ sudo apt install tmux
 git clone https://github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
+
+# htop
+sudo apt install htop
+
+# ag search
+# https://github.com/ggreer/the_silver_searcher
+sudo apt install silversearcher-ag 
+
+# mycli
+# https://github.com/dbcli/mycli
+sudo pip install -U mycli
 
 # postgresql
 sudo apt install postgresql postgresql-contrib
