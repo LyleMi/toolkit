@@ -4,4 +4,6 @@
 linuxDoc = '''
 Add User: adduser <username>
 Change Password: passwd
+C++ demangling: c++filt
+find Something: grep ./ -irnw -e 'search str'
 '''
