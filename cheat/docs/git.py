@@ -38,8 +38,17 @@ git merge dev""",
 git fetch upstream
 git merge upstream/master
 git reset --hard upstream/master
-git push -f
-""",
+git push -f""",
+    "log": """git log --oneline
+git log --oneline --decorate
+git log -p
+git log --stat
+git log --graph --oneline --decorate
+git log --pretty="%cn committed %h on %cd"
+git log --after="2018-12-1"
+git log --after="yesterday"
+git log --before="yesterday"
+git log --author="auother" """,
     }
 
 if __name__ == '__main__':
