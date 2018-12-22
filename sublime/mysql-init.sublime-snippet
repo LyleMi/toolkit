@@ -1,0 +1,27 @@
+<snippet>
+  <content><![CDATA[
+DROP DATABASE IF EXISTS `dbname`;
+
+CREATE DATABASE `dbname` DEFAULT CHARACTER SET utf8 collate utf8_general_ci;
+
+use `dbname`;
+
+CREATE TABLE `users` (
+  `id` INT AUTO_INCREMENT NOT NULL,
+  `username` VARCHAR(32) NOT NULL,
+  `password` VARCHAR(32) NOT NULL,
+  `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+);
+
+INSERT INTO `users` (`username`, `password`) VALUES ("admin", "deadbeef");
+
+CREATE USER IF NOT EXISTS 'dbname'@'localhost' IDENTIFIED BY 'random_password';
+GRANT all privileges ON dbname.* TO 'dbname'@'localhost';
+
+CREATE USER IF NOT EXISTS 'backup'@'localhost' IDENTIFIED BY 'another_random_password';
+GRANT SELECT ON dbname.* TO 'backup'@'localhost';
+]]></content>
+  <tabTrigger>mysql-init</tabTrigger>
+  <scope>source.sql</scope>
+</snippet>
