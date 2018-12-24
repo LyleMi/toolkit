@@ -1,9 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-linuxDoc = '''
-Add User: adduser <username>
-Change Password: passwd
-C++ demangling: c++filt
-find Something: grep ./ -irnw -e 'search str'
-'''
+from base import BaseDoc
+
+
+class linuxDoc(BaseDoc):
+
+    _doc = {
+        "add user": "adduser <username>",
+        "change passwd": "passwd",
+        "c++ demangling": "c++filt",
+        "grep": "grep ./ -irnw -e 'search str'",
+    }

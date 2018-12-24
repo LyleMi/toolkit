@@ -15,7 +15,9 @@ class BaseDoc(object):
                 print(k)
             return
         for doc in cls._doc:
-            if keys and doc not in keys:
+            if keys and doc not in keys and len(keys) != 1:
+                continue
+            if len(keys) == 1 and keys[0] not in doc:
                 continue
             print("[%s]\n" % doc)
             print("%s\n" % cls._doc[doc])

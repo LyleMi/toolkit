@@ -28,9 +28,9 @@ def main():
     if len(sys.argv) < 2:
         print("arg plz")
     elif sys.argv[1] == "iptables":
-        print(iptablesDoc)
+        iptablesDoc.show(sys.argv[2:])
     elif sys.argv[1] == "linux":
-        print(linuxDoc)
+        linuxDoc.show(sys.argv[2:])
     elif sys.argv[1] == "python":
         print(pythonDoc)
     elif sys.argv[1] == "ssh":
