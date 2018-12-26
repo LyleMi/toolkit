@@ -11,4 +11,7 @@ class linuxDoc(BaseDoc):
         "change passwd": "passwd",
         "c++ demangling": "c++filt",
         "grep": "grep ./ -irnw -e 'search str'",
+        "set coredump": """ulimit -c unlimited
+echo 1 >/proc/sys/kernel/core_uses_pid
+echo '/corefiles/core-%e-%p-%t' > /proc/sys/kernel/core_pattern"""
     }
