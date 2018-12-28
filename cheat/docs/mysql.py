@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from base import BaseDoc
+from .base import BaseDoc
+
 
 class MySQLDoc(BaseDoc):
 
@@ -16,6 +17,7 @@ INSERT INTO table_name VALUES ('foo', '2000-08-31');""",
         "update": """UPDATE table_name SET column_name = "new_value" WHERE record_name = "value";""",
         "alter": """ALTER TABLE table_name MODIFY column_name VARCHAR(200) NOT NULL;""",
     }
+
 
 if __name__ == '__main__':
     MySQLDoc.show()

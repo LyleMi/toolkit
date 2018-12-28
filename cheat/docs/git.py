@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from base import BaseDoc
+from .base import BaseDoc
+
 
 class GitDoc(BaseDoc):
 
@@ -32,14 +33,14 @@ git push origin --delete <branchName>
 // synchronize branch
 git checkout master
 git merge dev""",
-    "pr": """git remote add upstream https://
+        "pr": """git remote add upstream https://
 
 // synchronize after pull request
 git fetch upstream
 git merge upstream/master
 git reset --hard upstream/master
 git push -f""",
-    "log": """git log --oneline
+        "log": """git log --oneline
 git log --oneline --decorate
 git log -p
 git log --stat
@@ -50,6 +51,7 @@ git log --after="yesterday"
 git log --before="yesterday"
 git log --author="auother" """,
     }
+
 
 if __name__ == '__main__':
     GitDoc.show()

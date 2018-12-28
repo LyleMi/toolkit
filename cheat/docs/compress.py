@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from base import BaseDoc
+from .base import BaseDoc
 
 
 class CompressDoc(BaseDoc):

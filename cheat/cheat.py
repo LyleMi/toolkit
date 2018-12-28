@@ -32,9 +32,9 @@ def main():
     elif sys.argv[1] == "linux":
         linuxDoc.show(sys.argv[2:])
     elif sys.argv[1] == "python":
-        print(pythonDoc)
+        pythonDoc.show(sys.argv[2:])
     elif sys.argv[1] == "ssh":
-        print(sshDoc)
+        sshDoc.show(sys.argv[2:])
     elif sys.argv[1] == "shell":
         shellDoc(sys.argv[2:])
     elif sys.argv[1] == "tar":
