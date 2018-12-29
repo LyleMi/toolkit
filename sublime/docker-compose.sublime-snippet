@@ -12,11 +12,9 @@ services:
         restart: "always"
         ports: 
             - "8888:8888"
-        dns: 8.8.8.8
         dns:
             - 8.8.8.8
             - 9.9.9.9
-        dns_search: example.com
         dns_search:
             - dc1.example.com
             - dc2.example.com
@@ -29,7 +27,7 @@ services:
         mem_limit: 1000000000
         memswap_limit: 2000000000
         depends_on:
-          - db
+           - db
         links:
             - db
         networks:
@@ -45,6 +43,7 @@ services:
             MYSQL_ROOT_PASSWORD: ctf 
         volumes:
             - ./sql:/docker-entrypoint-initdb.d
+            - ./data:/var/lib/mysql
         networks:
             - default
 ]]></content>
