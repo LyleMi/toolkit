@@ -17,8 +17,8 @@ class Cli(Saker):
             "username": username,
             "password": password,
         }
-        self.post("", params=params, data=data)
-        print(self.lastr.content)
+        self.post("login", params=params, data=data)
+        print(self.lastr.text)
 
     def register(self, username, password="test"):
         params = {"page": "register"}
@@ -26,14 +26,15 @@ class Cli(Saker):
             "username": username,
             "password": password,
         }
-        self.post("", params=params, data=data)
-        print(self.lastr.content)
+        self.post("register", params=params, data=data)
+        print(self.lastr.text)
 
 
 if __name__ == '__main__':
-    url = ""  # site url
+    url = ""
     c = Cli(url)
-
+    c.register('user')
+    c.login('user')
 
 ]]></content>
     <tabTrigger>saker</tabTrigger>
