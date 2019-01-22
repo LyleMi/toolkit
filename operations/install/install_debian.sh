@@ -13,13 +13,13 @@ deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted 
 sudo apt update && sudo apt upgrade -y
 
 # install for docker test
-sudo apt install inetutils-ping
+sudo apt install -y inetutils-ping
 
 # make tools
-sudo apt install cmake clang
+sudo apt install -y cmake clang
 
 # python
-sudo apt install python-pip python-dev git libssl-dev libffi-dev build-essential
+sudo apt install -y python-pip python-dev git libssl-dev libffi-dev build-essential
 
 # if apt fail, use easy_install
 sudo easy_install pip
@@ -45,22 +45,22 @@ ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
 
 # htop
-sudo apt install htop
+sudo apt install -y htop
 
 # ag search
 # https://github.com/ggreer/the_silver_searcher
-sudo apt install silversearcher-ag 
+sudo apt install -y silversearcher-ag 
 
 # mycli
 # https://github.com/dbcli/mycli
 sudo pip install -U mycli
 
 # postgresql
-sudo apt install postgresql postgresql-contrib
+sudo apt install -y postgresql postgresql-contrib
 
 # the fuck
 # https://github.com/nvbn/thefuck
-sudo apt install python3-dev python3-pip
+sudo apt install -y python3-dev python3-pip
 sudo pip3 install thefuck
 
 # https configure
