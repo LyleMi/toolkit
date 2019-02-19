@@ -7,9 +7,13 @@ from .base import BaseDoc
 class MySQLDoc(BaseDoc):
 
     _doc = {
-        "user": """CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
-GRANT SELECT, INSERT, UPDATE, DELETE ON databasename.tablename TO 'username'@'host'
-GRANT all ON databasename.tablename TO 'username'@'host'""",
+        "user": """SELECT Host, User FROM mysql.user;
+CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
+GRANT SELECT, INSERT, UPDATE, DELETE ON databasename.tablename TO 'username'@'host';
+GRANT all ON databasename.tablename TO 'username'@'host';
+SHOW GRANTS FOR 'username'@'host';
+REVOKE all PRIVILEGES ON databasename.tablename FROM 'username'@'host';
+DROP USER 'username'@'host';""",
         "password": """UPDATE user SET password=PASSWORD('123456') WHERE user='root';
 FLUSH PRIVILEGES;""",
         "insert": """INSERT INTO table_name (column_name) VALUES ("foo"),("bar");
