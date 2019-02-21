@@ -14,7 +14,12 @@ GRANT all ON databasename.tablename TO 'username'@'host';
 SHOW GRANTS FOR 'username'@'host';
 REVOKE all PRIVILEGES ON databasename.tablename FROM 'username'@'host';
 DROP USER 'username'@'host';""",
-        "password": """UPDATE user SET password=PASSWORD('123456') WHERE user='root';
+        "password": """sudo service mysql stop
+sudo mysqld_safe --skip-grant-tables &
+mysql -uroot
+UPDATE mysql.user SET password=PASSWORD('123456') WHERE user='root';
+# mysql 5.7 or higher
+UPDATE mysql.user SET authentication_string=PASSWORD('123456') WHERE User='root';
 FLUSH PRIVILEGES;""",
         "insert": """INSERT INTO table_name (column_name) VALUES ("foo"),("bar");
 INSERT INTO table_name VALUES ('foo', '2000-08-31');""",

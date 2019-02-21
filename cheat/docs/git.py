@@ -50,6 +50,21 @@ git log --after="2018-12-1"
 git log --after="yesterday"
 git log --before="yesterday"
 git log --author="auother" """,
+        "tag": """// list all tag
+git tag
+// new tag
+git tag [tagname] -light
+// checkout
+git checkout [tagname]
+// add tag for commit
+git tag -a [tagname] [commit hash]
+// add tag to server
+git push origin [tagname]
+// delete tag
+git tag -d [tagname]""",
+        "pull big repo": """git clone --depth 1 <repo_URI>
+git fetch --unshallow
+git pull --all""",
     }
 
 
