@@ -1,5 +1,5 @@
 #!/bin/sh
 
-sudo apt install openjdk-8-jdk
-sudo apt install tomcat8
-sudo apt install maven2
+sudo apt install -y openjdk-8-jdk
+sudo apt install -y tomcat8
+sudo apt install -y maven2

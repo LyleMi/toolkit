@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # peda
-sudo apt install gdb
+sudo apt install -y gdb
 git clone https://github.com/longld/peda.git ~/peda
 echo "source ~/peda/peda.py" >> ~/.gdbinit
 
