@@ -1,0 +1,21 @@
+ <snippet>
+    <content><![CDATA[
+# Abstract
+
+# Introduction
+
+# Related Work
+
+# Method
+
+# Evaluation
+
+# Limitation
+
+# Reference
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>paper</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>text.html.markdown,text.html</scope>
+</snippet>
