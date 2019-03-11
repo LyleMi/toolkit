@@ -3,7 +3,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from saker.main import Saker
+from saker.core.scaner import Saker
 
 
 class Cli(Saker):

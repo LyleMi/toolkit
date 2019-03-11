@@ -27,6 +27,7 @@ sudo pip install --upgrade pip
 
 # zsh
 # https://github.com/robbyrussell/oh-my-zsh
+sudo apt install -y zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="bira"/' ~/.zshrc
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -68,3 +69,9 @@ git clone https://github.com/certbot/certbot
 cd ./certbot
 ./certbot-auto
 
+# autojump
+git clone git://github.com/wting/autojump.git
+cd autojump
+./install.py
+# for uninstall
+# ./uninstall.py
