@@ -18,11 +18,11 @@ scp keyfilename.pub
 cat keyfilename .pub >> ~/.ssh/authorized_keys
 
 mkdir ~/.ssh
-chmod 700 .ssh
-touch authorized_keys
-chmod 600 authorized_keys
-touch config
-chmod 644 config""",
+chmod 700 ~/.ssh
+touch ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+touch ~/.ssh/config
+chmod 644 ~/.ssh/config""",
         "local forward": """ssh -L <local port>:<remote host>:<remote port> <SSH hostname>""",
         "remote forward": """ssh -R <local port>:<remote host>:<remote port> <SSH hostname>"""
     }
