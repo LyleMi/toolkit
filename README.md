@@ -25,6 +25,7 @@ some db wrapper for sqlite/mysql/mongo/es
 - getwifipwd: get current wifi password
 - path diff: tool used to monitor file changes
 - logger: python logging code snipet
+- minijump: a mini dir jump tool for windows
 - singleton: singleton demo for python
 - windbghelper: script for debug Edge / IE
 - yd: YD dict API wrapper
