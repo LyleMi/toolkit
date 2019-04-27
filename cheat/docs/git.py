@@ -11,7 +11,10 @@ class GitDoc(BaseDoc):
 git config --global core.autocrlf false
 
 // set credential cache
-git config --global credential.helper "cache --timeout=3600" """,
+git config --global credential.helper "cache --timeout=3600"
+
+git config user.name "username"
+git config user.email "email@example.com" """,
         "branch": """// pull remote branch list
 git branch -r
 
