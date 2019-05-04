@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from .base import BaseDoc
+from docs.base import Base
 
 
-class pythonDoc(BaseDoc):
+class Python(Base):
 
     _doc = {
         "virtual env": """virtualenv venv

@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from .base import BaseDoc
+from docs.base import Base
 
 
-class CompressDoc(BaseDoc):
+class Compress(Base):
 
     _doc = {
         "tar": "tar xvf fileName.tar\ntar cvf fileName.tar dirname",

@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from .base import BaseDoc
+from docs.base import Base
 
 
-class iptablesDoc(BaseDoc):
+class Iptables(Base):
 
     _doc = {
         "save": "service iptables save",

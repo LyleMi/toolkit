@@ -2,11 +2,13 @@
 # -*- coding: utf-8 -*-
 
 
-class BaseDoc(object):
+class Base(object):
 
     _doc = {
         "test": "test"
     }
+
+    cmdhelp = "[keyword]"
 
     @classmethod
     def show(cls, keys=False):

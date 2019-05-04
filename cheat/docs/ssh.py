@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from .base import BaseDoc
+from docs.base import Base
 
 
-class sshDoc(BaseDoc):
+class SSH(Base):
 
     _doc = {
         "config": """Host name
@@ -14,8 +14,10 @@ Port 22
 IdentityFile ~/.ssh/keyfile
 """,
         "key": """ssh-keygen -t rsa -f keyfilename
+ssh-copy-id -i .ssh/keyfilename.pub xxxx
+# or
 scp keyfilename.pub
-cat keyfilename .pub >> ~/.ssh/authorized_keys
+cat keyfilename.pub >> ~/.ssh/authorized_keys
 
 mkdir ~/.ssh
 chmod 700 ~/.ssh

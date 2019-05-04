@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from .base import BaseDoc
+from docs.base import Base
 
 
-class MySQLDoc(BaseDoc):
+class MySQL(Base):
 
     _doc = {
         "user": """SELECT Host, User FROM mysql.user;

@@ -1,51 +1,35 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
 import sys
+import imp
 
-from docs.linux import linuxDoc
-from docs.python import pythonDoc
-from docs.ssh import sshDoc
-from docs.compress import CompressDoc
-from docs.iptables import iptablesDoc
-from docs.shell import shellDoc
-from docs.mysql import MySQLDoc
-from docs.git import GitDoc
 
-helpDoc = '''
-python cheat.py linux
-python cheat.py python
-python cheat.py ssh
-python cheat.py tar
-python cheat.py iptables
-python cheat.py mysql
-python cheat.py git
-python cheat.py shell <ip> <port>
-'''
+def init():
+    base = os.path.dirname(os.path.abspath(__file__))
+    docs = os.path.join(base, 'docs')
+    skip = ['__init__.py', 'base.py', '__pycache__']
+    entries = {}
+    for filename in os.listdir(docs):
+        if filename in skip:
+            continue
+        key = filename.split('.')[0]
+        module = imp.load_source(key, os.path.join(docs, filename))
+        entries[key.lower()] = getattr(module, key)
+    return entries
 
 
 def main():
+    entries = init()
     if len(sys.argv) < 2:
         print("arg plz")
-    elif sys.argv[1] == "iptables":
-        iptablesDoc.show(sys.argv[2:])
-    elif sys.argv[1] == "linux":
-        linuxDoc.show(sys.argv[2:])
-    elif sys.argv[1] == "python":
-        pythonDoc.show(sys.argv[2:])
-    elif sys.argv[1] == "ssh":
-        sshDoc.show(sys.argv[2:])
-    elif sys.argv[1] == "shell":
-        shellDoc(sys.argv[2:])
-    elif sys.argv[1] == "tar":
-        CompressDoc.show(sys.argv[2:])
-    elif sys.argv[1] == "mysql":
-        MySQLDoc.show(sys.argv[2:])
-    elif sys.argv[1] == "git":
-        GitDoc.show(sys.argv[2:])
+    elif sys.argv[1] in entries:
+        entries[sys.argv[1]].show(sys.argv[2:])
     else:
         print("Keyword not found.")
-        print(helpDoc)
+        for key in entries:
+            print('python cheat.py %s %s' % (key, entries[key].cmdhelp))
 
 
 if __name__ == '__main__':

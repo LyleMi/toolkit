@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from .base import BaseDoc
+from docs.base import Base
 
 
-class GitDoc(BaseDoc):
+class Git(Base):
 
     _doc = {
         "config": """// LF will be replaced by CRLF

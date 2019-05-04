@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from .base import BaseDoc
+from docs.base import Base
 
 
-class linuxDoc(BaseDoc):
+class Linux(Base):
 
     _doc = {
         "add user": "adduser <username>",
