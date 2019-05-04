@@ -5,17 +5,26 @@ import os
 import shutil
 import platform
 
+
 def main():
     system = platform.system()
     if system == 'Windows':
-        sublimeDir = "D:\\Program Files\\Sublime Text 3\\Data\\Packages\\User\\"
+        sublimeDir = 'D:\\Program Files\\Sublime Text 3\\Data\\Packages\\User\\'
     elif system == 'Darwin':
-        sublimeDir = "~/Library/Application Support/Sublime Text 3/Packages/User/"
+        sublimeDir = '~/Library/Application Support/Sublime Text 3/Packages/User/'
         sublimeDir = os.path.expanduser(sublimeDir)
-    for snippet in os.listdir("."):
-        if snippet.endswith(".sublime-snippet"):
-            print("install %s" % snippet)
-            shutil.copy(snippet, sublimeDir + snippet)
+    handleDir(sublimeDir, os.path.abspath('.'))
+
+
+def handleDir(sublimeDir, dir, prefix=''):
+    for filename in os.listdir(dir):
+        snippet = os.path.join(dir, filename)
+        if snippet.endswith('.sublime-snippet'):
+            print('install %s' % snippet)
+            shutil.copy(snippet, sublimeDir + prefix + filename)
+        elif os.path.isdir(snippet):
+            handleDir(sublimeDir, snippet, filename + '-')
+
 
 if __name__ == '__main__':
     main()
