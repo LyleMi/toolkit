@@ -1,0 +1,16 @@
+<snippet>
+    <content><![CDATA[
+register_shutdown_function(function(){var_dump(error_get_last());});
+
+register_shutdown_function(
+    function () {
+        file_put_contents(
+            '/var/www/log/phperror.log',
+            print_r(error_get_last(), true). "\n\r",
+            FILE_APPEND);
+    }
+);
+]]></content>
+    <tabTrigger>!debug</tabTrigger>
+    <scope>source.php</scope>
+</snippet>

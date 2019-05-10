@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+echo "<pre>";
+var_dump(get_declared_classes());
+var_dump(get_defined_functions());
+var_dump(get_defined_vars());
+echo "</pre>";
+die();
+]]></content>
+    <tabTrigger>!getdefine</tabTrigger>
+    <scope>source.php</scope>
+</snippet>
