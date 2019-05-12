@@ -22,6 +22,7 @@ some db wrapper for sqlite/mysql/mongo/es
 
 - changemac: script for change mac address
 - colorize: colorize text tool
+- dnsRebinding: a mini dns rebinding server
 - getwifipwd: get current wifi password
 - path diff: tool used to monitor file changes
 - logger: python logging code snipet
