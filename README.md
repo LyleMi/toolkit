@@ -4,7 +4,7 @@ My toolkit project, write some tools or code snippets for fun and practice.
 
 | Index | Brief Introduction |
 | ----- | ------------------ |
-| [Cheat Sheet](https://github.com/LyleMi/toolkit#cheatsheet) | A simple, extensible command line cheat sheet |
+| [Cheat Sheet](https://github.com/LyleMi/toolkit#cheat-sheet) | A simple, extensible command line cheat sheet |
 | [DB Wrapper](https://github.com/LyleMi/toolkit#dbwrapper) | Database Wrapper which makes Database cursor API easier to use. |
 | [Miscellaneous](https://github.com/LyleMi/toolkit#miscellaneous) | A variety of scripts, including modifying the system Mac, getting the current Wifi password, command line dictionary, and more. |
 | [Operations](https://github.com/LyleMi/toolkit#operations) | Operations scripts for configure server. |
@@ -71,7 +71,7 @@ print(db.select(sql))
 
 A script for change mac address which works on Windows / Mac OS.
 
-```python
+```
 usage: [options]
 
 Tool For Change Mac Address
@@ -88,7 +88,7 @@ optional arguments:
 
 A library for colorize text.
 
-![image](https://raw.githubusercontent.com/LyleMi/toolkit/images/colorize.png)
+![image](https://raw.githubusercontent.com/LyleMi/toolkit/master/images/colorize.png)
 
 ### DNS Rebinding
 
@@ -151,7 +151,7 @@ Script for debug Edge / IE.
 
 Youdao dict command line tool.
 
-![image](https://raw.githubusercontent.com/LyleMi/toolkit/images/youdao.png)
+![image](https://raw.githubusercontent.com/LyleMi/toolkit/master/images/youdao.png)
 
 ### Waf
 
@@ -164,17 +164,17 @@ Operations scripts for configure server.
 - config
     - .vimrc
 - deploy script
-    - cobra
-    - gitlab
-    - moloch
-    - octopress
-    - openvpn
-    - supervisor
+    - Cobra
+    - Gitlab
+    - Moloch
+    - Octopress
+    - Openvpn
+    - Supervisor
 - install command
     - docker
     - java
     - penetration testing
-- backup mysql
+- backup MySQL
 
 ## Sublime
 
