@@ -46,7 +46,7 @@ def main():
     parser = argparse.ArgumentParser(
         description='simple path diff tool',
         usage='%(prog)s [options]',
-        epilog='This is a path diff tool')
+        epilog='A simple path diff tool')
 
     parser.add_argument('-i', '--init', action="store_true",
                         help='initial at this path')

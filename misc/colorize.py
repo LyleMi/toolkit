@@ -66,7 +66,7 @@ def colorize(message, color):
 
 
 if __name__ == '__main__':
-    print colorize('test', 'cyan')
-    print colorize('test', 'green')
-    print colorize('test', 'red')
-    print colorize('test', 'yellow')
+    print(colorize("colorize('cyan', 'cyan')", 'cyan'))
+    print(colorize("colorize('green', 'green')", 'green'))
+    print(colorize("colorize('red', 'red')", 'red'))
+    print(colorize("colorize('yellow', 'yellow')", 'yellow'))
