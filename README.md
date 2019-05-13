@@ -67,6 +67,12 @@ print(db.select(sql))
 
 ## Miscellaneous
 
+### Ansi Escape
+
+A library for Ansi Escape Codes, including 8-color / 256-color / cursor move.
+
+![image](https://raw.githubusercontent.com/LyleMi/toolkit/master/images/ansiescape.png)
+
 ### ChangeMac
 
 A script for change mac address which works on Windows / Mac OS.
@@ -83,12 +89,6 @@ optional arguments:
                         network interface
   -d desc, --desc desc  network interface des
 ```
-
-### Colorize
-
-A library for colorize text.
-
-![image](https://raw.githubusercontent.com/LyleMi/toolkit/master/images/colorize.png)
 
 ### DNS Rebinding
 
