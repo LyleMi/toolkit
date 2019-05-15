@@ -12,7 +12,7 @@ def init():
     skip = ['__init__.py', 'base.py', '__pycache__']
     entries = {}
     for filename in os.listdir(docs):
-        if filename in skip:
+        if filename in skip or filename.endswith('.pyc'):
             continue
         key = filename.split('.')[0]
         module = imp.load_source(key, os.path.join(docs, filename))

