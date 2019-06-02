@@ -1,0 +1,11 @@
+# mssql need strong password to startup
+version: '3'
+
+services:
+    db:
+        image: microsoft/mssql-server-linux:latest
+        expose: 
+            - "1433"
+        environment:
+            ACCEPT_EULA: Y
+            SA_PASSWORD: YourStrong!Passw0rd233

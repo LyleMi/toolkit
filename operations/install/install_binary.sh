@@ -16,7 +16,7 @@ sduo pip install r2pipe
 # capstone
 sudo pip install capstone
 
-# pwntools
+# pwntools/
 # https://github.com/Gallopsled/pwntools
 sudo pip install --upgrade pwntools
 # sudo pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -U pwntools

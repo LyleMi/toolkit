@@ -2,15 +2,16 @@
 # -*- coding: utf-8 -*-
 
 
+import sys
 import time
 import dnslib
-import SocketServer
+import socketserver
 
 
-class DNSServer(SocketServer.UDPServer):
+class DNSServer(socketserver.UDPServer):
 
     def __init__(self, options):
-        SocketServer.UDPServer.__init__(
+        socketserver.UDPServer.__init__(
             self, ('0.0.0.0', 53), RequestHandler
         )
         self.rebindStatus = False
@@ -19,14 +20,14 @@ class DNSServer(SocketServer.UDPServer):
 
     def getRecord(self):
         if self.rebindStatus:
-            record = '127.0.0.1'
+            record = sys.argv[1]
         else:
             record = '8.8.8.8'
         self.rebindStatus = not self.rebindStatus
         return record
 
 
-class RequestHandler(SocketServer.DatagramRequestHandler):
+class RequestHandler(socketserver.DatagramRequestHandler):
 
     def handle(self):
         ttl = self.server.ttl
