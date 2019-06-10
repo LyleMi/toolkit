@@ -19,5 +19,7 @@ pip install -i https://mirrors.aliyun.com/pypi/simple xxxx""",
         "jupyter": """sudo jupyter notebook --ip 0.0.0.0 --allow-root""",
         "upload package": """rm -rf dist
 python setup.py sdist
-python -m twine upload dist/*"""
+python -m twine upload dist/*""",
+        "django": """django startproject name
+python manage.py startapp name"""
     }
