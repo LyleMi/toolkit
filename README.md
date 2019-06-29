@@ -147,6 +147,10 @@ python minijump.py l
 python minijump.py [short]
 ```
 
+### SSH Batch
+
+Execute commands in batches via SSH.
+
 ### Windbghelper
 
 Script for debug Edge / IE.
