@@ -64,11 +64,6 @@ sudo apt install -y postgresql postgresql-contrib
 sudo apt install -y python3-dev python3-pip
 sudo pip3 install thefuck
 
-# https configure
-git clone https://github.com/certbot/certbot
-cd ./certbot
-./certbot-auto
-
 # autojump
 git clone git://github.com/wting/autojump.git
 cd autojump
