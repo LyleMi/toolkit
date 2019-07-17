@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+    nfs:
+        image: janeczku/nfs-ganesha
+        privileged: true
+        volumes:
+            - ./tmp:/data/nfs
+        network_mode: host
+        cap_add:
+            - SYS_ADMIN
+            - DAC_READ_SEARCH
+        environment:
+            PROTOCOLS: 3
+            TRANSPORTS: TCP
