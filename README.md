@@ -111,6 +111,10 @@ A script for flask quick start.
 
 Get current wifi password, works on Windows / Mac OS / Linux.
 
+### github user info
+
+Get Github users' repo info by username.
+
 ### path diff
 
 Tool used to monitor file changes.

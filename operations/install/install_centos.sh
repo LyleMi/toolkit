@@ -17,3 +17,6 @@ sudo yum install -y git python-pip python-devel openssl-devel
 # traffic tools
 sudo yum install -y tcpdump tcpflow
 sudo yum install -y libpcap-devel
+
+# zsh
+sudo yum install -y zsh git
