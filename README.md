@@ -6,6 +6,7 @@ My toolkit project, write some tools or code snippets for fun and practice.
 | ----- | ------------------ |
 | [Cheat Sheet](https://github.com/LyleMi/toolkit#cheat-sheet) | A simple, extensible command line cheat sheet |
 | [DB Wrapper](https://github.com/LyleMi/toolkit#dbwrapper) | Database Wrapper which makes Database cursor API easier to use. |
+| [Little Encrypt](https://github.com/LyleMi/toolkit#little-encrypt) |  GoLang File Encryption Example. |
 | [Miscellaneous](https://github.com/LyleMi/toolkit#miscellaneous) | A variety of scripts, including modifying the system Mac, getting the current Wifi password, command line dictionary, and more. |
 | [Operations](https://github.com/LyleMi/toolkit#operations) | Operations scripts for configure server. |
 | [Sublime](https://github.com/LyleMi/toolkit#sublime) | Some Sublime code snippet and config file. |
@@ -68,6 +69,10 @@ print(db.select(sql))
 ## Dockers
 
 Some docker-compose file for quick install some services.
+
+## Little Encrypt
+
+GoLang file encryption example. Encrypt files with AES secret key, and then encrypt AES key with RSA public key, finally store them together.
 
 ## Miscellaneous
 
