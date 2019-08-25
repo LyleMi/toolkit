@@ -30,3 +30,8 @@ sudo pip install --upgrade ropgadget
 git clone https://github.com/pwndbg/pwndbg
 cd pwndbg
 ./setup.sh
+
+# exploitable
+git clone https://github.com/jfoote/exploitable
+source ~/exploitable/exploitable/exploitable.py
+exploitable
