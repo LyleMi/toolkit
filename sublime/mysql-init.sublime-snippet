@@ -2,7 +2,7 @@
   <content><![CDATA[
 DROP DATABASE IF EXISTS `dbname`;
 
-CREATE DATABASE `dbname` DEFAULT CHARACTER SET utf8mb4 collate utf8_general_ci;
+CREATE DATABASE `dbname` DEFAULT CHARACTER SET utf8mb4 collate utf8mb4_general_ci;
 
 use `dbname`;
 

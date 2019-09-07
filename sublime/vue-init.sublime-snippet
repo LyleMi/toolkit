@@ -1,0 +1,29 @@
+<snippet>
+    <content><![CDATA[
+<template>
+  <div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Name',
+  components: {
+  },
+  created () {
+  },
+  data () {
+    return {
+    }
+  },
+  methods: {
+  }
+}
+</script>
+
+<style>
+</style>
+]]></content>
+    <tabTrigger>!vue-init</tabTrigger>
+    <scope>text.html.vue</scope>
+</snippet>

@@ -4,7 +4,9 @@ version: '3'
 
 services:
     web:
-        build: .
+        build:
+            context: ./dockers
+            dockerfile: Web.Dockerfile
         container_name: web_container
         volumes:
             - ./web:/home/ctf/

@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+RUN set -x \
+    && apt-get update \
+    && apt-get install --no-install-recommends --no-install-suggests -y \
+        xxxxxxxxx \
+    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $fetchDeps \
+    && rm -r /var/lib/apt/lists/*
+]]></content>
+    <tabTrigger>docker-apt</tabTrigger>
+    <scope>source.dockerfile</scope>
+</snippet>

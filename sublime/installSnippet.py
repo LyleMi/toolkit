@@ -9,9 +9,9 @@ import platform
 def main():
     system = platform.system()
     if system == 'Windows':
-        sublimeDir = 'D:\\Program Files\\Sublime Text 3\\Data\\Packages\\User\\'
+        sublimeDir = 'D:\\Program Files\\Sublime Text 3\\Data\\Packages\\User\\custom'
     elif system == 'Darwin':
-        sublimeDir = '~/Library/Application Support/Sublime Text 3/Packages/User/'
+        sublimeDir = '~/Library/Application Support/Sublime Text 3/Packages/User/custom'
         sublimeDir = os.path.expanduser(sublimeDir)
     handleDir(sublimeDir, os.path.abspath('.'))
 
