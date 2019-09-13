@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sudo apt install -y nodejs
+sudo apt install -y nodejs npm
 
 sudo npm install n -g
 
