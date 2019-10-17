@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+    fmk:
+        build: .
+        command: tail -f /dev/null
+        volumes:
+            - ./bins:/home/bin/
