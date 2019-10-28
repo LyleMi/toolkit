@@ -21,7 +21,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 </style>
 ]]></content>
     <tabTrigger>!vue-init</tabTrigger>

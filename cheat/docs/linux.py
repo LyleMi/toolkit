@@ -44,6 +44,11 @@ free -m
 # net status 
 sar -n DEV 1
 sar -n TCP,ETCP 1""",
+        "mount": """[set read-only]
+mkdir /mnt/rootvol
+rootvol=/mnt/rootvol
+sudo mount --bind / $rootvol
+sudo mount -o remount,ro $rootvol""",
         "c++ demangling": "c++filt",
         "grep": "grep ./ -irnw -e 'search str'",
         "open forward": "echo 1 > /proc/sys/net/ipv4/ip_forward",

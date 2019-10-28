@@ -1,8 +1,15 @@
  <snippet>
     <content><![CDATA[
+title: Title
+authors: authors
+organizations: organizations
+keywords: keywords
+
 # Abstract
 
 # Introduction
+
+## Contributions
 
 # Related Work
 

@@ -3,7 +3,7 @@
 
 import os
 import sys
-import imp
+import importlib
 
 
 def init():
@@ -15,7 +15,7 @@ def init():
         if filename in skip or filename.endswith('.pyc'):
             continue
         key = filename.split('.')[0]
-        module = imp.load_source(key, os.path.join(docs, filename))
+        module = importlib.import_module('docs.' + key)
         entries[key.lower()] = getattr(module, key)
     return entries
 

@@ -7,7 +7,7 @@ from docs.base import Base
 class Python(Base):
 
     _doc = {
-        "virtual env": """virtualenv venv
+        "virtual env": """virtualenv --no-site-packages venv
 . venv/bin/activate""",
         "pip": """pip freeze > requirements.txt
 pip install -r requirements.txt
