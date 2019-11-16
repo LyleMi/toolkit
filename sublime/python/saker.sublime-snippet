@@ -3,10 +3,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from saker.core.scaner import Saker
+from saker.core.sess import Sess
 
 
-class Cli(Saker):
+class Cli(Sess):
 
     def __init__(self, url):
         super(Cli, self).__init__(url)

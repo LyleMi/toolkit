@@ -18,29 +18,33 @@ sudo apt install -y inetutils-ping
 # make tools
 sudo apt install -y cmake clang
 
+# linux common tools, perf for example
+sudo apt-get install -y linux-tools-common linux-tools-generic linux-tools-`uname -r`
+
 # python
-sudo apt install -y python-pip python-dev git libssl-dev libffi-dev build-essential
+sudo apt install -y python3-pip python3-dev git libssl-dev libffi-dev build-essential
 
 # if apt fail, use easy_install
 sudo easy_install pip
-sudo pip install --upgrade pip
+sudo pip3 install --upgrade pip
 
 # zsh
 # https://github.com/robbyrussell/oh-my-zsh
 sudo apt install -y zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="bira"/' ~/.zshrc
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
-sed -i 's/^plugins=(/plugins=(\n  zsh-autosuggestions\n  zsh-syntax-highlighting\n  zsh-history-substring-search\n/  ' ~/.zshrc
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" && \
+sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="bira"/' ~/.zshrc && \
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions && \
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting && \
+git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search && \
+sed -i 's/^plugins=(/plugins=(\n  zsh-autosuggestions\n  zsh-syntax-highlighting\n  zsh-history-substring-search\n/  ' ~/.zshrc && \
 source ~/.zshrc
 
 # vim
+sudo apt instal -y vim
 curl "https://raw.githubusercontent.com/LyleMi/toolkit/master/operations/config/.vimrc" > ~/.vimrc
 
 # tmux
-sudo apt install tmux
+sudo apt install -y tmux
 git clone https://github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .

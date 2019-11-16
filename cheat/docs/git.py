@@ -68,6 +68,7 @@ git tag -d [tagname]""",
         "pull big repo": """git clone --depth 1 <repo_URI>
 git fetch --unshallow
 git pull --all""",
+        "delete file": """git filter-branch --tree-filter "rm -f filename" -- --all"""
     }
 
 

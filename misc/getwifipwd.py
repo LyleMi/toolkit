@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import re
+import sys
 import locale
 import platform
-import re
 import subprocess
-import sys
 
 ver = sys.version_info
 isPY2 = (ver[0] == 2)
@@ -74,13 +74,16 @@ def main():
     if system not in ['Darwin', 'Linux', 'Windows']:
         print('Unknown operation system %s' % (system))
         return
-    ssid = getSSID(system)
-    if ssid is False:
-        print("Get SSID Fail")
-        return
+    if len(sys.argv) > 1:
+        ssid = sys.argv[1]
+    else:
+        ssid = getSSID(system)
+        if ssid is False:
+            print("Get SSID Fail")
+            return
     pwd = GetWifiPassword(ssid, system)
     if pwd is False:
-        print("Get SSID Fail")
+        print("Get Password Fail")
         return
     print("[%s]\n%s" % (ssid, pwd))
 
