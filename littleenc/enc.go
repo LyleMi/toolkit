@@ -215,11 +215,7 @@ func main() {
 
 	if enc {
 		aeskey := make([]byte, 16)
-
 		_, err := rand.Read(aeskey)
-		if err != nil {
-			panic(err)
-		}
 		if err != nil {
 			panic(err)
 		}

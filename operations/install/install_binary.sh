@@ -37,3 +37,6 @@ cd pwndbg
 git clone https://github.com/jfoote/exploitable
 source ~/exploitable/exploitable/exploitable.py
 exploitable
+
+# angr
+sudo pip install angr

@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+    redisdb:
+        image: redis
+        user: redis
+        ports:
+            - "127.0.0.1:6379:6379"
+        networks:
+            - default
