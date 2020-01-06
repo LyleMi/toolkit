@@ -44,6 +44,9 @@ free -m
 # net status 
 sar -n DEV 1
 sar -n TCP,ETCP 1""",
+        "netwrok": """netstat -tunlp
+ss -tunlp
+lsof -nP -iTCP -sTCP:LISTEN""",
         "mount": """[set read-only]
 mkdir /mnt/rootvol
 rootvol=/mnt/rootvol

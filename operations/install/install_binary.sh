@@ -13,6 +13,12 @@ git clone https://github.com/radare/radare2.git
 ./radare2/sys/install.sh
 sduo pip install r2pipe
 
+# unicron
+git clone https://github.com/unicorn-engine/unicorn
+UNICORN_ARCHS="arm aarch64 x86 mips" ./make.sh
+sudo ./make.sh install
+sudo ./make.sh uninstall
+
 # capstone
 sudo pip install capstone
 
