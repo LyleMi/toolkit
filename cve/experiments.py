@@ -1,0 +1,18 @@
+dhcpKey = [
+    'op',
+    'htype',
+    'hlen',
+    'xid',
+    'flags',
+    'ciaddr',
+    'yiaddr',
+    'giaddr',
+    'chaddr',
+    'sname',
+    'file',
+    'option',
+    'discover',
+    'offer',
+    'request',
+    'ack',
+]
