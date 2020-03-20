@@ -9,16 +9,16 @@ s = requests.Session()
 url = ""
 
 params = {
-    "key": "value"
+    "key": "value",
 }
-s.get(url, params=params)
+r = s.get(url, params=params)
 
 headers = {
-    "User-Agent": "Python"
+    "User-Agent": "Python",
 }
 
 data = {
-    "key": "value"
+    "key": "value",
 }
 
 files = {
@@ -38,6 +38,7 @@ r = s.post(
     headers=headers,
     files=files
 )
+print(r.text)
 print(r.content)
 
 ]]></content>

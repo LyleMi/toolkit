@@ -5,7 +5,8 @@ sudo apt install -y gdb
 git clone https://github.com/longld/peda.git ~/peda
 echo "source ~/peda/peda.py" >> ~/.gdbinit
 
-git clone git://github.com/Mipu94/peda-heap.git ~/peda-heap
+# peda-heap
+git clone https://github.com/Mipu94/peda-heap.git ~/peda-heap
 echo "source ~/peda-heap/peda.py" >> ~/.gdbinit
 
 # radare2
@@ -26,7 +27,7 @@ sudo pip install capstone
 # https://github.com/Gallopsled/pwntools
 # sudo pip install --upgrade pwntools
 sudo apt-get install -y python3 python3-pip python3-dev git libssl-dev libffi-dev build-essential
-sudo python3 -m pip install --upgrade git+https://github.com/Gallopsled/pwntools.git@dev3
+sudo python3 -m pip install --upgrade git+https://github.com/Gallopsled/pwntools.git@dev
 # sudo pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -U pwntools
 mkdir ~/.pwntools-cache
 echo never > ~/.pwntools-cache/update

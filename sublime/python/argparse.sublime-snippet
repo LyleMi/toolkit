@@ -19,6 +19,6 @@ if not opts.data:
     parser.print_help()
     exit(1)
 ]]></content>
-    <tabTrigger>!argparse</tabTrigger>
+    <tabTrigger>!arg</tabTrigger>
     <scope>source.python</scope>
 </snippet>
