@@ -17,9 +17,12 @@ def searchDB(keyword):
     ret = db.select(sql)
     s = Statistics()
     for kd in ret:
+        s.update(kd[1])
+        '''
         if 'field' in kd[1]:
             s.update(kd[1])
             # print(kd[0], highlight(kd[1], ['field', keyword]))
+        '''
     print(len(ret))
     return s
 
@@ -38,6 +41,7 @@ if __name__ == '__main__':
     for d in s.sortByCount():
         x.append(d[0])
         y.append(d[1])
-    sns.barplot(x=x, y=y)
-    plt.show()
+        print(d[1], d[0])
+    # sns.barplot(x=x, y=y)
+    # plt.show()
     # s.getCounts(dhcpKey)
