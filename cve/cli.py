@@ -11,7 +11,8 @@ from sql import DB
 from statistics import Statistics
 from utils import highlight
 
-def searchDB(keyword):
+
+def DBStatis(keyword):
     db = DB(Config.dbOpts)
     sql = 'SELECT * FROM cve WHERE `desc` like "%%%s%%"' % keyword
     ret = db.select(sql)
@@ -27,15 +28,8 @@ def searchDB(keyword):
     return s
 
 
-if __name__ == '__main__':
-    product_name = 'Microsoft Edge'
-    product_name = 'Safari'
-    product_name = 'Firefox'
-    product_name = 'Chrome'
-    year = '2018'
-    keyword = 'DHCP'
-    keyword = sys.argv[1]
-    s = searchDB(keyword)
+def statis(keyword):
+    s = DBStatis(keyword)
     x = []
     y = []
     for d in s.sortByCount():
@@ -45,3 +39,25 @@ if __name__ == '__main__':
     # sns.barplot(x=x, y=y)
     # plt.show()
     # s.getCounts(dhcpKey)
+
+
+def search(keyword):
+    db = DB(Config.dbOpts)
+    sql = 'SELECT * FROM cve WHERE `desc` like "%%%s%%"' % keyword
+    ret = db.select(sql)
+    for kd in ret:
+        print(kd[0])
+        print(highlight(kd[1], keyword))
+
+
+def main():
+    command = sys.argv[1]
+    keyword = sys.argv[2]
+    if command == 'search':
+        search(keyword)
+    elif command == 'statis':
+        statis(keyword)
+
+
+if __name__ == '__main__':
+    main()

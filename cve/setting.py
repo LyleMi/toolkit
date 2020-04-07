@@ -1,6 +1,7 @@
 Vulners = {
     'BoF': [
         'buffer overflow',
+        'overflow',
     ],
     'Heap': [
         'heap',
@@ -31,7 +32,7 @@ Vulners = {
         'xss',
         'cross-site',
     ],
-    'XSS': [
+    'CSRF': [
         'csrf',
     ],
 }
