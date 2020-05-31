@@ -39,8 +39,12 @@ git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM
 sed -i 's/^plugins=(/plugins=(\n  zsh-autosuggestions\n  zsh-syntax-highlighting\n  zsh-history-substring-search\n/  ' ~/.zshrc && \
 source ~/.zshrc
 
+# for slow zsh
+# git config --global --add oh-my-zsh.hide-dirty 1
+git config --global --add oh-my-zsh.hide-status 1
+
 # vim
-sudo apt instal -y vim
+sudo apt install -y vim
 curl "https://raw.githubusercontent.com/LyleMi/toolkit/master/operations/config/.vimrc" > ~/.vimrc
 
 # tmux
@@ -69,8 +73,12 @@ sudo apt install -y python3-dev python3-pip
 sudo pip3 install thefuck
 
 # autojump
-git clone git://github.com/wting/autojump.git
+git clone --depth=1 git://github.com/wting/autojump.git
 cd autojump
 ./install.py
 # for uninstall
 # ./uninstall.py
+
+sudo apt-get install -y yum
+yum-config-manager --add-repo repository_url
+# yum-config-manager --enable

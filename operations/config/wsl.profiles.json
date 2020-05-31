@@ -1,0 +1,199 @@
+// To view the default settings, hold "alt" while clicking on the "Settings" button.
+// For documentation on these settings, see: https://aka.ms/terminal-documentation
+
+{
+  "$schema": "Solarized Dark",
+  // https://aka.ms/terminal-profiles-schema",
+
+  "defaultProfile": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+
+  "profiles":
+  {
+    "defaults":
+    {
+      // Put settings here that you want to apply to all profiles
+      "acrylicOpacity": 0.9,
+      "closeOnExit": true,
+      "colorScheme": "Solarized Dark",
+      "cursorColor": "#FFFFFF",
+      "cursorShape": "bar",
+      "fontFace": "Consolas",
+      "fontSize": 14,
+      "padding": "0, 0, 0, 0",
+      // "backgroundImageOpacity": 0.95,
+      // "backgroundImageStretchMode": "fill",
+      "useAcrylic": true
+    },
+    "list": [
+    {
+      // Make changes here to the cmd.exe profile
+      "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+      "name": "cmd",
+      "commandline": "cmd.exe",
+      "hidden": false
+    },
+    {
+      "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+      "hidden": true,
+      "name": "Azure Cloud Shell",
+      "source": "Windows.Terminal.Azure"
+    },
+    {
+      "guid": "{c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40}",
+      "hidden": false,
+      "name": "Ubuntu-18.04",
+      "source": "Windows.Terminal.Wsl"
+    },
+    {
+      "guid": "{573235ae-767a-5cbe-b530-3faf4de616c3}",
+      "hidden": false,
+      "name": "Ubuntu18",
+      // "source": "Windows.Terminal.Wsl",
+      "commandline": "wsl -u ubuntu zsh"
+    },
+    {
+      // Make changes here to the powershell.exe profile
+      "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+      "name": "Windows PowerShell",
+      "commandline": "powershell.exe",
+      "hidden": false
+    }]
+  },
+
+  // Add custom color schemes to this array
+  // https://atomcorp.github.io/themes/
+  "schemes": [
+  {
+    "name": "Solarized Dark - Patched",
+    "black": "#002831",
+    "red": "#d11c24",
+    "green": "#738a05",
+    "yellow": "#a57706",
+    "blue": "#2176c7",
+    "purple": "#c61c6f",
+    "cyan": "#259286",
+    "white": "#eae3cb",
+    "brightBlack": "#475b62",
+    "brightRed": "#bd3613",
+    "brightGreen": "#475b62",
+    "brightYellow": "#536870",
+    "brightBlue": "#708284",
+    "brightPurple": "#5956ba",
+    "brightCyan": "#819090",
+    "brightWhite": "#fcf4dc",
+    "background": "#001e27",
+    "foreground": "#708284"
+  },
+  {
+    "name": "Campbell",
+    "foreground": "#F2F2F2",
+    "background": "#0C0C0C",
+    "colors": [
+      "#0C0C0C",
+      "#C50F1F",
+      "#13A10E",
+      "#C19C00",
+      "#0037DA",
+      "#881798",
+      "#3A96DD",
+      "#CCCCCC",
+      "#767676",
+      "#E74856",
+      "#16C60C",
+      "#F9F1A5",
+      "#3B78FF",
+      "#B4009E",
+      "#61D6D6",
+      "#F2F2F2"
+    ]
+  },
+  {
+    "name": "Cobalt2",
+    "black": "#000000",
+    "red": "#ff0000",
+    "green": "#38de21",
+    "yellow": "#ffe50a",
+    "blue": "#1460d2",
+    "purple": "#ff005d",
+    "cyan": "#00bbbb",
+    "white": "#bbbbbb",
+    "brightBlack": "#555555",
+    "brightRed": "#f40e17",
+    "brightGreen": "#3bd01d",
+    "brightYellow": "#edc809",
+    "brightBlue": "#5555ff",
+    "brightPurple": "#ff55ff",
+    "brightCyan": "#6ae3fa",
+    "brightWhite": "#ffffff",
+    "background": "#132738",
+    "foreground": "#ffffff"
+  },
+  {
+    "name": "Solarized Dark",
+    "foreground": "#FDF6E3",
+    "background": "#273642",
+    "colors": [
+      "#073642",
+      "#D30102",
+      "#859900",
+      "#B58900",
+      "#268BD2",
+      "#D33682",
+      "#2AA198",
+      "#EEE8D5",
+      "#002B36",
+      "#CB4B16",
+      "#586E75",
+      "#657B83",
+      "#839496",
+      "#6C71C4",
+      "#93A1A1",
+      "#FDF6E3"
+    ]
+  },
+  {
+    "name": "Solarized Light",
+    "foreground": "#073642",
+    "background": "#FDF6E3",
+    "colors": [
+      "#073642",
+      "#D30102",
+      "#859900",
+      "#B58900",
+      "#268BD2",
+      "#D33682",
+      "#2AA198",
+      "#EEE8D5",
+      "#002B36",
+      "#CB4B16",
+      "#586E75",
+      "#657B83",
+      "#839496",
+      "#6C71C4",
+      "#93A1A1",
+      "#FDF6E3"
+    ]
+  }],
+
+  // https://docs.microsoft.com/en-us/windows/terminal/customize-settings/key-bindings
+  // Add any keybinding overrides to this array.
+  // To unbind a default keybinding, set the command to "unbound"
+  "keybindings": [
+    { "command": "copy", "keys": [ "ctrl+c" ] },
+    { "command": "paste", "keys": [ "ctrl+v" ] },
+    { "command": "newTab", "keys": [ "ctrl+n" ] },
+    { "command": "closeTab", "keys": [ "ctrl+shift+w" ] },
+    { "command": { "action": "splitPane", "split": "horizontal"}, "keys": "alt+[" },
+    { "command": { "action": "splitPane", "split": "vertical"}, "keys": "alt+]" },
+    { "command": "closePane", "keys": [ "ctrl+w" ] },
+    { "command": "switchToTab0", "keys": [ "ctrl+1" ] },
+    { "command": "switchToTab1", "keys": [ "ctrl+2" ] },
+    { "command": "switchToTab2", "keys": [ "ctrl+3" ] },
+    { "command": "switchToTab3", "keys": [ "ctrl+4" ] },
+    { "command": "switchToTab4", "keys": [ "ctrl+5" ] },
+    { "command": "switchToTab5", "keys": [ "ctrl+6" ] },
+    { "command": "switchToTab6", "keys": [ "ctrl+7" ] },
+    { "command": "switchToTab7", "keys": [ "ctrl+8" ] },
+    { "command": "switchToTab8", "keys": [ "ctrl+9" ] }
+  ]
+}

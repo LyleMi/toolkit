@@ -2,20 +2,20 @@
 
 # peda
 sudo apt install -y gdb
-git clone https://github.com/longld/peda.git ~/peda
+git clone --depth=1 https://github.com/longld/peda.git ~/peda
 echo "source ~/peda/peda.py" >> ~/.gdbinit
 
 # peda-heap
-git clone https://github.com/Mipu94/peda-heap.git ~/peda-heap
+git clone --depth=1 https://github.com/Mipu94/peda-heap.git ~/peda-heap
 echo "source ~/peda-heap/peda.py" >> ~/.gdbinit
 
 # radare2
-git clone https://github.com/radare/radare2.git
+git clone --depth=1 https://github.com/radare/radare2.git
 ./radare2/sys/install.sh
 sduo pip install r2pipe
 
 # unicron
-git clone https://github.com/unicorn-engine/unicorn
+git clone --depth=1 https://github.com/unicorn-engine/unicorn
 UNICORN_ARCHS="arm aarch64 x86 mips" ./make.sh
 sudo ./make.sh install
 sudo ./make.sh uninstall
@@ -36,12 +36,12 @@ echo never > ~/.pwntools-cache/update
 sudo pip install --upgrade ropgadget
 
 # pwndbg
-git clone https://github.com/pwndbg/pwndbg
+git clone --depth=1 https://github.com/pwndbg/pwndbg
 cd pwndbg
 ./setup.sh
 
 # exploitable
-git clone https://github.com/jfoote/exploitable
+git clone --depth=1 https://github.com/jfoote/exploitable
 source ~/exploitable/exploitable/exploitable.py
 exploitable
 
