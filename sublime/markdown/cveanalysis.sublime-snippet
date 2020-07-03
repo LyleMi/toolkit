@@ -1,0 +1,33 @@
+ <snippet>
+    <content><![CDATA[
+# CVEXXX
+
+## 简介
+
+### 时间线
+
+- 报告时间:
+- 修复时间:
+- 披露时间:
+
+### 漏洞影响范围
+
+### 利用限制
+
+## 复现
+
+### 复现环境
+
+### PoC
+
+## 漏洞分析
+
+### 调用栈
+
+### 漏洞Patch
+
+## 参考链接
+]]></content>
+    <tabTrigger>cveana</tabTrigger>
+    <scope>text.html.markdown,text.html</scope>
+</snippet>
