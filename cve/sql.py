@@ -98,7 +98,9 @@ class DB(object):
 def initDB():
     db = DB(Config.dbOpts)
     datas = []
-    sql = "INSERT INTO `cve` (`number`, `desc`) VALUES (%s, %s)"
+    sql = "INSERT IGNORE INTO `cve` (`number`, `desc`) VALUES (%s, %s)"
+    # ON DUPLICATE KEY UPDATE
+    # REPLACE INTO
     for kd in getValue():
         # print(kd)
         datas.append([kd[0], kd[1]])

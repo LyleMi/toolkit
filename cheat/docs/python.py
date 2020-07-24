@@ -22,7 +22,10 @@ pip config set global.index-url https://mirrors.aliyun.com/pypi/simple
         "jupyter": """sudo jupyter notebook --ip 0.0.0.0 --allow-root""",
         "upload package": """rm -rf dist
 python setup.py sdist
-python -m twine upload dist/*""",
+python -m twine upload dist/*
+
+# for test
+python -m twine upload --repository testpypi dist/*""",
         "django": """django startproject name
 python manage.py startapp name"""
     }

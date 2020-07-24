@@ -1,0 +1,13 @@
+<snippet>
+    <content><![CDATA[
+import re
+
+def getAll(reg, content):
+    regRel = re.compile(reg, re.IGNORECASE)
+    finds = regRel.findall(content)
+    return finds
+
+]]></content>
+    <tabTrigger>!regexp</tabTrigger>
+    <scope>source.python</scope>
+</snippet>

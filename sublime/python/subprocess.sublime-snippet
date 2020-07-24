@@ -1,0 +1,17 @@
+<snippet>
+    <content><![CDATA[
+import subprocess
+
+def run(command):
+    p = subprocess.Popen(
+        command,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE
+    )
+    out, err = p.communicate()
+    out = out.decode()
+    return out
+]]></content>
+    <tabTrigger>!subprocess</tabTrigger>
+    <scope>source.python</scope>
+</snippet>
