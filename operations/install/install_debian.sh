@@ -3,6 +3,8 @@
 # update source if needed
 # sudo vi /etc/apt/sources.list
 
+cp /etc/apt/sources.list /etc/apt/sources.list.bak
+
 echo '# Tsinghua deb source \n\
 deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse  \n\
 deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse \n\
