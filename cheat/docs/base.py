@@ -22,7 +22,7 @@ class Base(object):
             if len(keys) == 1 and keys[0] not in doc:
                 continue
             print("[%s]\n" % doc)
-            print("%s\n" % cls._doc[doc])
+            print("%s\n" % cls._doc[doc].lstrip("\n").rstrip("\n"))
 
 if __name__ == '__main__':
     BaseDoc.show()

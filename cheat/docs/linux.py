@@ -9,12 +9,14 @@ class Linux(Base):
     _doc = {
         "user": """# adduser
 adduser <username>
+useradd -M -N -r -s /bin/bash -c <username>
 # change passwd
 passwd
 # user info
 finger
 # edit sudoer info
 visudo / sudoedit
+userdel <username>
 
 # group
 groupadd
