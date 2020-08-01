@@ -56,5 +56,8 @@ bcdedit
 
 # 控制面板
 control
+
+# 创建链接
+mklink Link Target
 """
     }

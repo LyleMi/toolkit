@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[
+[].forEach.call($$("*"),function(a){
+  a.style.outline="1px solid #"+(~~(Math.random()*(1<<24))).toString(16)
+})
+]]></content>
+    <tabTrigger>!cssdebug</tabTrigger>
+    <scope>text.html</scope>
+</snippet>
+<!-- https://segmentfault.com/a/1190000006860477?utm_source=weekly&utm_medium=email&utm_campaign=email_weekly -->

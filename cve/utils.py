@@ -6,8 +6,8 @@ from termcolor import colored
 from config import Config
 
 
-def getValue():
-    for file in traverseFile():
+def getValue(minYear=0, maxYear=3000):
+    for file in traverseFile(minYear, maxYear):
         with open(file, 'r') as fh:
             number = file.split(os.path.sep)[-1].split('.')[0]
             name = ''
@@ -33,6 +33,7 @@ def getValue():
 
 
 def traverseFile(minYear=0, maxYear=3000):
+    print(minYear)
     dpath = Config.dataPath
     for _year in os.listdir(dpath):
         if not _year.isnumeric():
@@ -54,6 +55,9 @@ def highlight(s, keywords):
         s = s.replace(k, colored(k, 'red'))
     return s
 
+
 if __name__ == '__main__':
-    for d in getValue():
-        pass
+    for d in getValue(2014):
+        # if d[0].startswith("CVE-2014"):
+        print(d)
+        # break

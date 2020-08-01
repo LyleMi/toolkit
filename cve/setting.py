@@ -47,3 +47,11 @@ Effects = {
         'denial of service',
     ],
 }
+
+Products = {
+    "Dlink": [
+        "Dlink",
+        "D-link",
+        "D-Link",
+    ]
+}
