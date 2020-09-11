@@ -31,9 +31,23 @@ sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-c
 sudo chmod +x /usr/local/bin/docker-compose
 
 # or install docker compose by pip
-sudo pip install docker-compose
+sudo pip3 install docker-compose
+
+alias dc=docker-compose
 
 # add user to docker groupe
+set USER=ubuntu
 sudo usermod -aG docker $USER
 sudo service docker restart
 newgrp - docker
+
+sudo vi /etc/docker/daemon.json
+
+"""
+{
+  "registry-mirrors": [
+    "https://hub-mirror.c.163.com",
+    "https://mirror.baidubce.com"
+  ]
+}
+"""

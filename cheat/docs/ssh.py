@@ -25,6 +25,15 @@ touch ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 touch ~/.ssh/config
 chmod 644 ~/.ssh/config""",
-        "local forward": """ssh -L <local port>:<remote host>:<remote port> <SSH hostname>""",
-        "remote forward": """ssh -R <local port>:<remote host>:<remote port> <SSH hostname>"""
+        "forward": """
+# ssh
+ssh -D <port> <SSH hostname>
+ssh  -f -C2qTnN -D <port> <SSH hostname>
+
+# local forward
+ssh -L <local port>:<remote host>:<remote port> <SSH hostname>
+
+# remote forward
+ssh -R <local port>:<remote host>:<remote port> <SSH hostname>
+""",
     }

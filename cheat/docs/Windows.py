@@ -26,6 +26,11 @@ takeown
 
 # 修改 ACL
 icacls
+
+# bitlocker
+manage-bde
+manage-bde -lock F:
+manage-bde -lock F: -forcedismount
 """,
         "process": """
 # kill
@@ -40,6 +45,11 @@ net.exe stop <service_name>
 
 sc.exe start <service_name>
 sc.exe stop <service_name>
+""",
+        "wsl": """
+# enable/disable Virtual Machine Platform for wsl2
+Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
+Disable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
 """,
         "misc": """
 clip // 定向/重定向到剪贴板
