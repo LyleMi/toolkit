@@ -7,7 +7,11 @@ from docs.base import Base
 class Git(Base):
 
     _doc = {
-        "config": """// LF will be replaced by CRLF
+        "config": """
+// show config
+git config --global -l
+
+// LF will be replaced by CRLF
 git config --global core.autocrlf false
 
 git config core.ignorecase false
@@ -17,8 +21,10 @@ git config --global credential.helper "cache --timeout=3600"
 git config --global credential.helper store
 
 git config user.name "username"
-git config user.email "email@example.com" """,
-        "branch": """// pull remote branch list
+git config user.email "email@example.com"
+""",
+        "branch": """
+// pull remote branch list
 git branch -r
 
 // pull remote branch
@@ -38,25 +44,34 @@ git push origin --delete <branchName>
 
 // synchronize branch
 git checkout master
-git merge dev""",
-        "pr": """git remote add upstream https://
+git merge dev
+""",
+        "pr": """
+git remote add upstream https://
 
 // synchronize after pull request
 git fetch upstream
 git merge upstream/master
 git reset --hard upstream/master
 git push -f""",
-        "log": """git log --oneline
+        "log": """
+git log --oneline
 git log --oneline --decorate
+
 git log -p
 git log --stat
 git log --graph --oneline --decorate
 git log --pretty="%cn committed %h on %cd"
+
 git log --after="2018-12-1"
 git log --after="yesterday"
 git log --before="yesterday"
-git log --author="auother" """,
-        "tag": """// list all tag
+git log --author="auother"
+
+git log --diff-filter=D --summary
+""",
+        "tag": """
+// list all tag
 git tag
 // new tag
 git tag [tagname] -light
@@ -67,11 +82,17 @@ git tag -a [tagname] [commit hash]
 // add tag to server
 git push origin [tagname]
 // delete tag
-git tag -d [tagname]""",
-        "pull big repo": """git clone --depth 1 <repo_URI>
+git tag -d [tagname]
+""",
+        "pull big repo": """
+git clone --depth 1 <repo_URI>
 git fetch --unshallow
-git pull --all""",
-        "delete file": """git filter-branch --tree-filter "rm -f filename" -- --all"""
+git pull --all
+git pull origin master --allow-unrelated-histories
+""",
+        "delete file": """
+git filter-branch --tree-filter "rm -f filename" -- --all
+"""
     }
 
 

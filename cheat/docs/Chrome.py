@@ -11,6 +11,8 @@ class Chrome(Base):
 # disable sandbox
 --no-sandbox
 
+--proxy-server="socks5://127.0.0.1:1080"
+
 # set proxy pac url
 --proxy-pac-url
 
