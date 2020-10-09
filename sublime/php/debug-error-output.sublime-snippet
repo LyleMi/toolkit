@@ -1,6 +1,6 @@
 <snippet>
     <content><![CDATA[
-register_shutdown_function(function(){var_dump(error_get_last());});
+register_shutdown_function(function(){var_dump(error_get_last())});
 
 register_shutdown_function(
     function () {

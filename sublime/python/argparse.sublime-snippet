@@ -2,22 +2,24 @@
     <content><![CDATA[
 import argparse
 
-parser = argparse.ArgumentParser(
-    description='description',
-    usage='[options]',
-    epilog='epilog')
-parser.add_argument(
-    '-b', '--bool', action="store_true", help='bool value'
-)
-parser.add_argument(
-    '-d', '--data', metavar='data', default='', help='data'
-)
+def parseArg():
+    parser = argparse.ArgumentParser(
+        description='description',
+        usage='[options]',
+        epilog='epilog')
+    parser.add_argument(
+        '-b', '--bool', action="store_true", help='bool value'
+    )
+    parser.add_argument(
+        '-d', '--data', metavar='data', default='', help='data'
+    )
 
-opts = parser.parse_args()
+    opts = parser.parse_args()
 
-if not opts.data:
-    parser.print_help()
-    exit(1)
+    if not opts.data:
+        parser.print_help()
+        exit(1)
+    return opts
 ]]></content>
     <tabTrigger>!arg</tabTrigger>
     <scope>source.python</scope>
