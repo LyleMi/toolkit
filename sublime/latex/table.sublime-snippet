@@ -1,0 +1,18 @@
+<snippet>
+    <content><![CDATA[
+\begin{table}[htbp]
+    \caption{caption}
+    \label{tab:tablename}
+    \centering
+    \begin{tabular}{c|c}
+    \hline
+    col1 & col2 & \\\\
+    \hline
+         & & \\\\
+    \hline
+    \end{tabular}
+\end{table}
+]]></content>
+    <tabTrigger>!table</tabTrigger>
+    <scope>text.tex</scope>
+</snippet>

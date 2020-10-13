@@ -13,6 +13,7 @@ def main():
     elif system == 'Darwin':
         sublimeDir = '~/Library/Application Support/Sublime Text 3/Packages/User/custom/'
         sublimeDir = os.path.expanduser(sublimeDir)
+    print("found sublime dir in %s" % sublimeDir)
     handleDir(sublimeDir, os.path.abspath('.'))
 
 
