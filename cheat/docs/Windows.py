@@ -46,10 +46,17 @@ net.exe stop <service_name>
 sc.exe start <service_name>
 sc.exe stop <service_name>
 """,
+        "cmd": """
+# need Consolas font
+prompt /?
+setx PROMPT ╭─$P$S$_╰─$$$S
+setx PROMPT ╭─$S$P$S$C$D$T$H$H$H$F$_╰─$$$S
+""",
         "wsl": """
 # enable/disable Virtual Machine Platform for wsl2
 Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
 Disable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
 """,
         "vm": """
 bcdedit /set hypervisorlaunchtype off

@@ -19,7 +19,7 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install -y inetutils-ping
 
 # make tools
-sudo apt install -y cmake clang
+sudo apt install -y cmake clang llvm
 
 # linux common tools, perf for example
 sudo apt-get install -y linux-tools-common linux-tools-generic linux-tools-`uname -r`
@@ -33,12 +33,12 @@ sudo pip3 install --upgrade pip
 
 # zsh
 # https://github.com/robbyrussell/oh-my-zsh
-sudo apt install -y zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" && \
+sudo apt install -y zsh curl git
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="bira"/' ~/.zshrc && \
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions && \
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting && \
-git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search && \
+git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions && \
+git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting && \
+git clone --depth=1 https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search && \
 sed -i 's/^plugins=(/plugins=(\n  zsh-autosuggestions\n  zsh-syntax-highlighting\n  zsh-history-substring-search\n/  ' ~/.zshrc && \
 source ~/.zshrc
 
@@ -52,7 +52,7 @@ curl "https://raw.githubusercontent.com/LyleMi/toolkit/master/operations/config/
 
 # tmux
 sudo apt install -y tmux
-git clone https://github.com/gpakosz/.tmux.git
+git clone --depth=1 https://github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
 
@@ -85,3 +85,11 @@ cd autojump
 sudo apt-get install -y yum
 yum-config-manager --add-repo repository_url
 # yum-config-manager --enable
+
+# network
+sudo apt-get install -y nload iftop
+
+# add other common packages
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt-get update
