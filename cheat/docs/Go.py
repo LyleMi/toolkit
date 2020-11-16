@@ -11,5 +11,10 @@ class Go(Base):
 export GOPROXY=https://goproxy.io
 """,
         "compile": """
-"""
+go tool compile
+""",
+        "annotation": """
+# disable inline
+// go:noinline
+""",
     }

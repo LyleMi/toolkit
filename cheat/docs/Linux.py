@@ -11,15 +11,20 @@ class Linux(Base):
 # adduser
 adduser <username>
 useradd -M -N -r -s /bin/bash -c <username>
+
 # change passwd
 passwd
+
 # user info
 finger <username>
+
 # edit sudoer info
 visudo / sudoedit
 userdel <username>
+
 # online user
 w
+
 # user log
 last
 lastb # login fail
@@ -66,16 +71,29 @@ free -m
 sar -n DEV 1
 sar -n TCP,ETCP 1
 """,
-        "netwrok": """
+        "network": """
+# net status 
 netstat -tunlp
 ss -tunlp
 lsof -nP -iTCP -sTCP:LISTEN
+
+# set network bridge
+brctl addbr br0
+# disable stp
+brctl stp br0 off
+brctl addif br0 eth0
+
+ethtool
+
+ifconfig
 """,
-        "mount": """[set read-only]
+        "mount": """
+[set read-only]
 mkdir /mnt/rootvol
 rootvol=/mnt/rootvol
 sudo mount --bind / $rootvol
-sudo mount -o remount,ro $rootvol""",
+sudo mount -o remount,ro $rootvol
+""",
         "c++ demangling": "c++filt",
         "grep": "grep ./ -irnw -e 'search str'",
         "open forward": "echo 1 > /proc/sys/net/ipv4/ip_forward",

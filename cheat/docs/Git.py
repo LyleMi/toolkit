@@ -22,6 +22,21 @@ git config --global credential.helper store
 
 git config user.name "username"
 git config user.email "email@example.com"
+
+// close SSL CERT verification for speed up
+git config --global http.sslVerify false
+
+// proxy
+git config --global https.proxy http://127.0.0.1:1080
+git config --global https.proxy https://127.0.0.1:1080
+git config --global https.proxy 'socks5://127.0.0.1:10808'
+
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+
+// proxy only for github
+git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
+git config --global --unset http.https://github.com.proxy
 """,
         "branch": """
 // pull remote branch list
@@ -53,7 +68,8 @@ git remote add upstream https://
 git fetch upstream
 git merge upstream/master
 git reset --hard upstream/master
-git push -f""",
+git push -f
+""",
         "log": """
 git log --oneline
 git log --oneline --decorate
@@ -84,14 +100,21 @@ git push origin [tagname]
 // delete tag
 git tag -d [tagname]
 """,
-        "pull big repo": """
+        "big repo": """
+// pull
 git clone --depth 1 <repo_URI>
 git fetch --unshallow
 git pull --all
 git pull origin master --allow-unrelated-histories
+
+rsync .git <repo_URI>/.git
+
+// push
+git gc
 """,
         "delete file": """
-git filter-branch --tree-filter "rm -f filename" -- --all
+git filter-branch --tree-filter "rm -f path/to/file" -- --all
+git push -u origin --all
 """
     }
 
