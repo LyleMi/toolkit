@@ -6,7 +6,7 @@ use `cve`;
 
 CREATE TABLE `cve` (
   `number` VARCHAR(32) PRIMARY KEY NOT NULL,
-  `name` VARCHAR(32) NOT NULL,
-  `version` VARCHAR(32) NOT NULL,
-  `desc` VARCHAR(4096) NOT NULL
+  `name` VARCHAR(2048) NOT NULL DEFAULT "",
+  `version` VARCHAR(2048) NOT NULL DEFAULT "",
+  `desc` VARCHAR(4096) NOT NULL  DEFAULT ""
 );

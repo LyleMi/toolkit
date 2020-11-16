@@ -94,17 +94,7 @@ class DB(object):
         self.cur.close()
         self.conn.close()
 
-
-def initDB():
-    db = DB(Config.dbOpts)
-    datas = []
-    sql = "INSERT IGNORE INTO `cve` (`number`, `desc`) VALUES (%s, %s)"
-    # ON DUPLICATE KEY UPDATE
-    # REPLACE INTO
-    for kd in getValue():
-        # print(kd)
-        datas.append([kd[0], kd[1]])
-        if len(datas) > 1000:
-            # db.insert(sql, datas, True)
-            datas = []
-    db.insert(sql, datas, True)
+    def addCVEData(self, datas):
+        sql = "INSERT INTO `cve` (`number`, `name`, `version`, `desc`) VALUES (%s, %s, %s, %s)"
+        sql += " ON DUPLICATE KEY UPDATE `name`=VALUES(`name`), `version`=VALUES(`version`), `desc`=VALUES(`desc`)"
+        self.insert(sql, datas, True)
