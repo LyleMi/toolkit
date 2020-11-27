@@ -8,9 +8,6 @@ from saker.core.sess import Sess
 
 class Cli(Sess):
 
-    def __init__(self, url):
-        super(Cli, self).__init__(url)
-
     def login(self, username, password="test"):
         params = {"page": "login"}
         data = {
@@ -20,21 +17,14 @@ class Cli(Sess):
         self.post("login", params=params, data=data)
         print(self.lastr.text)
 
-    def register(self, username, password="test"):
-        params = {"page": "register"}
-        data = {
-            "username": username,
-            "password": password,
-        }
-        self.post("register", params=params, data=data)
-        print(self.lastr.text)
-
-
-if __name__ == '__main__':
+def main():
     url = ""
     c = Cli(url)
-    c.register('user')
-    c.login('user')
+    c.login("user")
+
+
+if __name__ == "__main__":
+    main()
 
 ]]></content>
     <tabTrigger>saker</tabTrigger>

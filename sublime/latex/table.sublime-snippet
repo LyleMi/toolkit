@@ -6,9 +6,9 @@
     \centering
     \begin{tabular}{c|c}
     \hline
-    col1 & col2 & \\\\
+    col1 & col2 & \\
     \hline
-         & & \\\\
+         & & \\
     \hline
     \end{tabular}
 \end{table}

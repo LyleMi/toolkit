@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[
+` <>`_
+]]></content>
+    <tabTrigger>`</tabTrigger>
+    <scope>text.restructuredtext</scope>
+</snippet>

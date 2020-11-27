@@ -1,8 +1,8 @@
 <snippet>
     <content><![CDATA[
-with open(file, "rwb", encoding="utf-8") as fh:
-    fh.write()
-    content = fh.read()
+with open(file, "rwb", encoding="utf-8") as fp:
+    fp.write(content)
+    content = fp.read()
 ]]></content>
     <tabTrigger>with</tabTrigger>
     <scope>source.python</scope>

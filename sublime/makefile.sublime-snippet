@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+.PHONY: all test
+
+all:
+	gcc source.c -o source
+
+test:
+	./source
+
+clean:
+	rm source
+
+]]></content>
+  <tabTrigger>makefile</tabTrigger>
+  <scope>source.makefile</scope>
+</snippet>

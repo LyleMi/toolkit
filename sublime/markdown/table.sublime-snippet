@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+| header | header |
+| :----: | :----: |
+| content | content |
+]]></content>
+    <tabTrigger>table</tabTrigger>
+    <scope>text.html.markdown,text.html</scope>
+</snippet>

@@ -4,16 +4,20 @@ import argparse
 
 def parseArg():
     parser = argparse.ArgumentParser(
-        description='description',
-        usage='[options]',
-        epilog='epilog')
-    parser.add_argument(
-        '-b', '--bool', action="store_true", help='bool value'
+        description="description",
+        usage="[options]",
+        epilog="epilog"
     )
     parser.add_argument(
-        '-d', '--data', metavar='data', default='', help='data'
+        "-b", "--bool", action="store_true", help="bool value"
     )
-
+    parser.add_argument(
+        "-d", "--data", metavar="data", default="", help="data"
+    )
+    parser.add_argument(
+        "-n", "--number", type=int, help="int value"
+    )
+    parser.add_argument("otherthings", nargs="*")
     opts = parser.parse_args()
 
     if not opts.data:
