@@ -94,12 +94,28 @@ rootvol=/mnt/rootvol
 sudo mount --bind / $rootvol
 sudo mount -o remount,ro $rootvol
 """,
-        "c++ demangling": "c++filt",
-        "grep": "grep ./ -irnw -e 'search str'",
-        "open forward": "echo 1 > /proc/sys/net/ipv4/ip_forward",
+        "config": """
+# open forward
+echo 1 > /proc/sys/net/ipv4/ip_forward
+""",
+        "tricks": """
+# c++ demangling
+c++filt
+
+# grep
+grep ./ -irnw -e 'search str'
+
+# convert
+find . -type f -exec dos2unix {} \\;
+""",
         "set coredump": """
-limit -c unlimited
+# disable core file
+ulimit -c 0
+
+# enable core file
+ulimit -c unlimited
 echo 1 >/proc/sys/kernel/core_uses_pid
+echo core > /proc/sys/kernel/core_pattern
 echo '/corefiles/core-%e-%p-%t' > /proc/sys/kernel/core_pattern
 """
     }

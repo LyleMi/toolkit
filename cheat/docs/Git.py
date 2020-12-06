@@ -19,6 +19,8 @@ git config core.ignorecase false
 // set credential cache
 git config --global credential.helper "cache --timeout=3600"
 git config --global credential.helper store
+// for credential on windows
+git config --global credential.helper wincred
 
 git config user.name "username"
 git config user.email "email@example.com"
