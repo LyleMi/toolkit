@@ -18,6 +18,9 @@ python -m json.tool
 # python's document
 python -m pydoc -p 8000
 python -m http.server --bind 127.0.0.1 8888
+
+# clear pyc
+python -m compileall
 """,
         "pip": """
 pip freeze > requirements.txt
@@ -53,7 +56,8 @@ python setup.py sdist
 python -m twine upload dist/*
 
 # for test
-python -m twine upload --repository testpypi dist/*""",
+python -m twine upload --repository testpypi dist/*
+""",
         "django": """
 django startproject name
 python manage.py startapp name
@@ -74,5 +78,8 @@ SECURE_HSTS_SECONDS = 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 python manage.py runsslserver
+
+# manage
+python manage.py createsuperuser
 """
     }

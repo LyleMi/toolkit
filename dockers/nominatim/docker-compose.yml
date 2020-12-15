@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+    nominatim:
+        image: mediagis/nominatim
+        command: tail -f /dev/null
+        volumes:
+            - ./data:/data
+            - ./nominatimdata:/var/lib/postgresql/11/main
+        ports: 
+            - "7070:8080"
