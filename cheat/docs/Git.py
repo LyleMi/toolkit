@@ -117,7 +117,12 @@ git gc
         "delete file": """
 git filter-branch --tree-filter "rm -f path/to/file" -- --all
 git push -u origin --all
-"""
+""",
+        "delete file": """
+git lfs install
+git lfs track
+git lfs track *.gz
+""",
     }
 
 

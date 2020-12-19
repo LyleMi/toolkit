@@ -27,6 +27,10 @@ docker pull registry.docker-cn.com/library/ubuntu:16.04
 hub-mirror.c.163.com
 mirror.baidubce.com
 """,
+        "images": """
+docker save -o image.tar image_name
+docker load --input image.tar
+""",
         "rm": """
 # rm hang docker
 docker container rm $(docker ps -a -q)
