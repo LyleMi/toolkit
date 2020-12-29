@@ -72,6 +72,8 @@ sar -n DEV 1
 sar -n TCP,ETCP 1
 """,
         "network": """
+route -n
+
 # net status 
 netstat -tunlp
 ss -tunlp
@@ -86,6 +88,7 @@ brctl addif br0 eth0
 ethtool
 
 ifconfig
+ifconfig <interface> <ip> netmask 255.255.255.0
 """,
         "mount": """
 [set read-only]

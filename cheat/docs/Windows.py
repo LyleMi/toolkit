@@ -45,6 +45,8 @@ net.exe stop <service_name>
 
 sc.exe start <service_name>
 sc.exe stop <service_name>
+
+netsh winsock reset
 """,
         "cmd": """
 # need Consolas font

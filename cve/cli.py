@@ -99,6 +99,7 @@ def search(keyword, exclude):
             # if ex in kd[1]:
         print(colored(kd[0], "yellow"))
         print(highlight(kd[1], keywords))
+    print("\ntotal %d results with keywords: %s" % (len(ret), keyword))
 
 
 def initDB(dbOpts, year):

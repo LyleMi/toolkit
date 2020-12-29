@@ -15,20 +15,23 @@ class DB(object):
         cur (obj): mysql connection cursor
     """
 
-    def __init__(self, opts):
+    def __init__(self, opts={}):
         """init connection
 
         Args:
             opts (dict): mysql connection config
         """
         self.conn = pymysql.connect(
-            host=opts["host"],
-            user=opts["user"],
-            passwd=opts["pwd"],
-            db=opts["db"],
-            charset='utf8'
+            host=opts.get("host", "localhost"),
+            user=opts.get("user", "root"),
+            passwd=opts.get("pwd", "password"),
+            db=opts.get("db", ""),
+            charset=opts.get("charset", "utf8")
         )
         self.cur = self.conn.cursor()
+
+    def enableDBG(self):
+        pymysql.connections.DEBUG = True
 
     def showDBs(self):
         """show mysql dbs
@@ -36,7 +39,7 @@ class DB(object):
         Returns:
             dict: databases
         """
-        self.cur.execute('SHOW DATABASES')
+        self.cur.execute("SHOW DATABASES")
         return [r[0] for r in self.cur.fetchall()]
 
     def showTables(self):
@@ -45,7 +48,7 @@ class DB(object):
         Returns:
             dict: tables
         """
-        self.cur.execute('SHOW TABLES')
+        self.cur.execute("SHOW TABLES")
         return [r[0] for r in self.cur.fetchall()]
 
     def select(self, sql, data=None):
@@ -95,7 +98,7 @@ class DB(object):
         self.conn.close()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     opts = {
         "host": "localhost",
         "user": "test",
@@ -107,9 +110,9 @@ if __name__ == '__main__':
     print(db.showTables())
     db.cur.execute("delete from user")
     sql = "INSERT INTO `user` (`username`, `password`) VALUES (%s, %s)"
-    db.insert(sql, ['admin', 'admin'])
-    db.insert(sql, [['2', '3'], ['4', '5']], True)
+    db.insert(sql, ["admin", "admin"])
+    db.insert(sql, [["2", "3"], ["4", "5"]], True)
     sql = "SELECT * FROM user WHERE username = %s"
-    print(db.select(sql, 'admin'))
+    print(db.select(sql, "admin"))
     sql = "SELECT * FROM user"
     print(db.select(sql))

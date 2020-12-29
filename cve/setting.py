@@ -2,6 +2,7 @@ Vulners = {
     "BoF": [
         "Stack-based buffer overflow",
         "buffer overflow",
+        "stack overflow",
         "overflow",
     ],
     "Heap": [
@@ -19,6 +20,8 @@ Vulners = {
     ],
     "CMDi": [
         "Command Injection",
+        "inject system commands",
+        "inject commands",
     ],
     "Null": [
         "null pointer de-reference",
@@ -26,6 +29,7 @@ Vulners = {
         "null pointer",
     ],
     "DoS": [
+        "dos",
         "assertion failure",
         "denial of service",
     ],
@@ -33,9 +37,12 @@ Vulners = {
         "format string",
     ],
     "Info Leak": [
+        "disclose sensitive information",
         "memory leak",
+        "information leak",
         "sensitive information",
         "information disclosure",
+        "disclosure of information",
     ],
     "Integer": [
         "integer underflow",
@@ -55,13 +62,22 @@ Vulners = {
     "CSRF": [
         "csrf",
     ],
+    "backdoor": [
+        "backdoor",
+    ],
+    "mitm": [
+        "mitm",
+        "man-in-the-middle",
+    ],
 }
 
 Effects = {
     "RCE": [
         "arbitrary code execution",
+        "execute code",
         "execute arbitrary code",
         "execute arbitrary command",
+        "execute os command",
         "arbitrary code",
         "arbitrary command",
         "remote code execution",
@@ -72,7 +88,12 @@ Effects = {
         "crash",
     ],
     "bypass": [
+        "bypass authentication",
         "bypass",
+        "unauthenticated",
+    ],
+    "lpe": [
+        "elevate privileges",
     ],
     "escape": [
         "escape",
