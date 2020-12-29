@@ -2,7 +2,7 @@
     <content><![CDATA[
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1cm,height=1cm]{xx.jpg}
+    \includegraphics[width=0.8\linewidth,height=1cm]{xx.jpg}
     \caption{caption}
     \label{fig:figure1}
 \end{figure}

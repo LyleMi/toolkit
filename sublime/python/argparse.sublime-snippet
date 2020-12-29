@@ -19,6 +19,8 @@ def parseArg():
     )
     parser.add_argument("otherthings", nargs="*")
     opts = parser.parse_args()
+    # for remain args
+    # opts = parser.parse_known_args()
 
     if not opts.data:
         parser.print_help()

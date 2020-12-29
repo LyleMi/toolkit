@@ -28,7 +28,9 @@ def test():
 def main():
     params = []
     style = "╭──"
-    style += color("$P", [3, 9, 1])
+    style += color("root@localhost", [3, 9, 1])
+    style += "$S"
+    style += color("$P", [4, 9, 1])
     style += "$S$_╰─$$$S"
     # style = color("╭─$P$S$_╰─$$$S", [3, 9, 1])
     print("setx PROMPT " + style)

@@ -13,7 +13,7 @@ services:
             - ./web:/home/ctf/
         command: python app.py
         restart: "always"
-        ports: 
+        ports:
             - "8888:8888"
         dns:
             - 8.8.8.8
@@ -37,7 +37,7 @@ services:
             - default
     db:
         image: mysql:5.7
-        expose: 
+        expose:
             - "3306"
         environment:
             MYSQL_DATABASE: ctf

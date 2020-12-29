@@ -30,8 +30,9 @@ run ./build.sh to build and install the toolchain into /opt/cross
 
 # For big-endian MIPS, perform the following:
 '''
-set TRIPLE=mipseb in config.sh
-set LINUX_HEADERS_URL=https://kernel.org/pub/linux/kernel/v2.6/longterm/v2.6.32/linux-2.6.32.70.tar.xz in defs.sh
+# set TRIPLE=mipseb in config.sh
+# set in defs.sh
+LINUX_HEADERS_URL=https://kernel.org/pub/linux/kernel/v2.6/longterm/v2.6.32/linux-2.6.32.70.tar.xz
 run ./clean.sh to clean out any previous builds
 run ./build.sh to build and install the toolchain into /opt/cross
 '''
@@ -50,3 +51,6 @@ run ./build.sh to build and install the toolchain into /opt/cross
 /opt/cross/mipseb-linux-musl
 /opt/cross/mipsel-linux-musl
 '''
+
+apt install gcc-5-mipsel-linux-gnu
+apt install gcc-5-mips-linux-gnu
