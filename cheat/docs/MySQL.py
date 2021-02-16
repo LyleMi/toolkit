@@ -32,6 +32,7 @@ INSERT INTO table_name VALUES ('foo', '2000-08-31');
 UPDATE table_name SET column_name = "new_value" WHERE record_name = "value";
 """,
         "alter": """
+ALTER TABLE table_name RENAME AS new_table_name;
 ALTER TABLE table_name ADD `column_name` VARCHAR(32) NOT NULL DEFAULT "";
 ALTER TABLE table_name MODIFY column_name VARCHAR(200) NOT NULL;
 ALTER TABLE table_name CHANGE `old_column_name` `new_column_name` VARCHAR(512) NOT NULL DEFAULT "";
