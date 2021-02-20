@@ -20,6 +20,8 @@ sudo apt install -y inetutils-ping
 
 # make tools
 sudo apt install -y cmake clang llvm
+# higher version of cmake if needed
+pip install cmake
 
 # linux common tools, perf for example
 sudo apt-get install -y linux-tools-common linux-tools-generic linux-tools-`uname -r`

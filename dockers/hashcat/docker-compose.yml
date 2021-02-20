@@ -1,0 +1,6 @@
+version: '3'
+
+services:
+    hc:
+        image: dizcza/docker-hashcat:cuda
+        command: tail -f /dev/null

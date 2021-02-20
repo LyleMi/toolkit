@@ -41,6 +41,9 @@ def parseArg():
     parser.add_argument(
         "-a", "--analyze", metavar="analyze", default="", help="analyze data"
     )
+    parser.add_argument(
+        "-c", "--colorful", action="store_false", default=True, help="colorful output"
+    )
     opts = parser.parse_args()
     """
     if not opts.search and not opts.analyze and not opts.init:
@@ -79,17 +82,22 @@ def statis(keyword):
     # s.getCounts(dhcpKey)
 
 
-def search(keyword, exclude):
+def search(opts):
+    keyword = opts.search
+    exclude = opts.exclude
     # excludes = exclude.split(",")
     # exclude = exclude.replace(",", "|")
     # print("exclude %s" % exclude)
     keywords = keyword.split(",")
-    db = DB(Config.dbOpts)
-    sql = 'SELECT `number`, `desc` FROM cve WHERE'
-    for key in keywords:
-        sql += '`desc` like "%%%s%%" and' % key
-    sql = sql[:-4]
+    if keyword != "raw":
+        sql = "SELECT `number`, `desc` FROM cve WHERE"
+        for key in keywords:
+            sql += '`desc` like "%%%s%%" and' % key
+        sql = sql[:-4]
+    else:
+        sql = input("input your sql here:")
     # print(sql)
+    db = DB(Config.dbOpts)
     ret = db.select(sql)
     for kd in ret:
         # for ex in excludes:
@@ -97,8 +105,12 @@ def search(keyword, exclude):
         if len(exclude) > 0 and re.search(exclude.replace(",", "|"), kd[1], re.IGNORECASE) is not None:
             continue
             # if ex in kd[1]:
-        print(colored(kd[0], "yellow"))
-        print(highlight(kd[1], keywords))
+        if opts.colorful:
+            print(colored(kd[0], "yellow"))
+            print(highlight(kd[1], keywords))
+        else:
+            print(kd[0])
+            print(kd[1])
     print("\ntotal %d results with keywords: %s" % (len(ret), keyword))
 
 
@@ -127,7 +139,7 @@ def initDB(dbOpts, year):
 def main():
     opts = parseArg()
     if opts.search:
-        search(opts.search, opts.exclude)
+        search(opts)
     elif opts.analyze:
         statis(opts.analyze)
     elif opts.init:

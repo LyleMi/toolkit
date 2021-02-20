@@ -109,6 +109,6 @@ class Mongo(object):
 if __name__ == '__main__':
     m = Mongo('test', 'test')
     m.insert({'datajson': 'test'})
-    print m.find({})
+    print(m.find({}))
     m.delete()
-    print m.find()
+    print(m.find())
