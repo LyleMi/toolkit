@@ -92,6 +92,7 @@ yum-config-manager --add-repo repository_url
 sudo apt-get install -y nload iftop
 
 # add other common packages
+# python3.7 for example
 sudo apt-get install -y software-properties-common
 sudo add-apt-repository ppa:deadsnakes/ppa
 sudo apt-get update

@@ -51,3 +51,6 @@ sudo vi /etc/docker/daemon.json
   ]
 }
 """
+
+# for image
+export DOCKER_IMAGE_PREFIX=docker.mirrors.ustc.edu.cn

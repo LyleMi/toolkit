@@ -4,7 +4,7 @@
 import psycopg2
 
 
-class DB(object):
+class PSQLDB(object):
 
     def __init__(self, opts):
         """init connection
