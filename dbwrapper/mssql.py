@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import pymssql
-
+# pip install pymssql
 
 class DB(object):
 
