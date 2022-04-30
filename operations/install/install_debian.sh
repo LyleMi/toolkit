@@ -16,7 +16,10 @@ deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted 
 sudo apt update && sudo apt upgrade -y
 
 # install for docker test
-sudo apt install -y inetutils-ping
+sudo apt-get install -y inetutils-ping
+# install ps for docker
+sudo apt-get install -y procps
+sudo apt-get install -y net-tools
 
 # make tools
 sudo apt install -y cmake clang llvm
@@ -41,7 +44,7 @@ sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="bira"/' ~/.zshrc && \
 git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions && \
 git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting && \
 git clone --depth=1 https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search && \
-sed -i 's/^plugins=(/plugins=(\n  zsh-autosuggestions\n  zsh-syntax-highlighting\n  zsh-history-substring-search\n/  ' ~/.zshrc && \
+sed -i 's/^plugins=(/plugins=(\n  zsh-autosuggestions\n  zsh-syntax-highlighting\n  zsh-history-substring-search\n  /  ' ~/.zshrc && \
 source ~/.zshrc
 
 # for slow zsh
