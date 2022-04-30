@@ -3,8 +3,8 @@ version: '3'
 
 services:
     db:
-        image: microsoft/mssql-server-linux:latest
-        expose: 
+        image: mcr.microsoft.com/mssql/server
+        ports: 
             - "127.0.0.1:1433:1433"
         environment:
             ACCEPT_EULA: Y

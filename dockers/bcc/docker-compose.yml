@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  bcc:
+    # image: zlim/bcc
+    build: ./
+    network_mode: "host"
+    pid: "host"
+    volumes:
+      - ./scripts:/opt/
+      - /lib/modules:/lib/modules:ro
+      - /usr/src:/usr/src:ro
+      - /etc/localtime:/etc/localtime:ro
+    command: tail -f /dev/null
+    privileged: true

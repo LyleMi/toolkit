@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  ctfd:
+    image: ctfd/ctfd
+    restart: always
+    ports:
+      - "8000:8000"
