@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  elasticsearch:
+    image: elasticsearch:7.12.1
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - "discovery.type=single-node"
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_PASSWORD=M3gicW0rd
+      - xpack.security.enabled=true

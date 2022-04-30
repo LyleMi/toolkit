@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  monstache:
+    image: rwynn/monstache
+    volumes:
+      - ./conf:/data
+    command: -f /data/config.toml
+    healthcheck:
+      test: "wget -q -O - http://localhost:8080/healthz"
+      interval: 10s
+      timeout: 30s
+      retries: 300
+    restart: unless-stopped
