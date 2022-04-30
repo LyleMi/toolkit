@@ -35,7 +35,7 @@ pip install --user xxx
 # set new source
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple xxxx
 pip install -i https://mirrors.aliyun.com/pypi/simple xxxx
-pip config set global.index-url https://mirrors.aliyun.com/pypi/simple
+pip config set global.index-url https://mirrors.cloud.tencent.com/pypi/simple
 """,
         "jupyter": """
 sudo jupyter notebook --ip 0.0.0.0 --allow-root

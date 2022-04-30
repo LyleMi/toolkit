@@ -13,6 +13,12 @@ docker image ls
 docker container ls
 docker exec -it bash
 """,
+        "set group": """
+set USER=ubuntu
+sudo usermod -aG docker $USER
+sudo service docker restart
+newgrp - docker
+""",
         "mirror": """
 # pull from cn mirror
 docker pull registry.docker-cn.com/library/ubuntu:16.04
@@ -32,6 +38,9 @@ docker save -o image.tar image_name
 docker load --input image.tar
 """,
         "rm": """
+# rm hang volume
+docker volume rm `docker volume ls -q -f dangling=true`
+        
 # rm hang docker
 docker container rm $(docker ps -a -q)
 

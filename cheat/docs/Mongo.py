@@ -7,6 +7,7 @@ class Mongo(Base):
         "auth": """
 use admin
 db.auth("username", "password")
+db.auth("root", passwordPrompt())
 """,
         "db": """
 show dbs

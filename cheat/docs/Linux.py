@@ -33,6 +33,16 @@ lastb # login fail
 groupadd
 groupdel
 groups
+
+# generate password
+openssl passwd -6 -salt salt 123456
+
+# add user via edit file
+echo 'newuser:x:<UID>:<GID>::/tmp:/bin/sh' | sudo tee -a /etc/passwd
+echo 'newuser:x:0:' | sudo tee -a /etc/group
+echo 'newuser:$6$salt$MktMKPZJ6t59GfxcJU20DwcwQzfMvOlHFVZiOVD71w.igcOo1R7vBYR65JquIQ/7siC7VRpmteKvZmfSkNc69.:19060:0:99999:7:::' | sudo tee -a /etc/shadow
+echo 'newuser:!::' | sudo tee -a /etc/gshadow
+echo 'newuser ALL=(ALL:ALL) NOPASSWD: ALL' | sudo tee -a /etc/sudoers
 """,
         "process": """
 # process status
@@ -76,6 +86,10 @@ route -n
 
 # net status 
 netstat -tunlp
+
+# network statistics
+netstat -s
+
 ss -tunlp
 lsof -nP -iTCP -sTCP:LISTEN
 
