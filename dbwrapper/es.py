@@ -16,7 +16,7 @@ class ElasticSearchDB(object):
         index (str): default index
     """
 
-    def __init__(self, servers, index, doctype):
+    def __init__(self, servers, index, doctype, http_auth=None):
         """init param
 
         Args:
@@ -24,7 +24,7 @@ class ElasticSearchDB(object):
             index (str): default index
             doctype (str): default doc type
         """
-        self.client = elasticsearch.Elasticsearch(hosts=servers)
+        self.client = elasticsearch.Elasticsearch(hosts=servers, basic_auth=http_auth)
         self.index = index
         self.doctype = doctype
 

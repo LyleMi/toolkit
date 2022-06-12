@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# https://stackoverflow.com/questions/70963985/error-failed-to-download-metadata-for-repo-appstream-cannot-prepare-internal
+sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+
 sudo yum update && sudo yum upgrade -y
 
 # add source

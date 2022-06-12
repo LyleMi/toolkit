@@ -6,27 +6,30 @@ import logging
 import os.path as op
 
 
-formatStr = '[%(asctime)s] [%(levelname)s] %(message)s'
+def get_logger(logger_name="logger"):
+    logger = logging.getLogger(logger_name)
+    if len(logger.handlers) > 0:
+        return logger
+    formatStr = '[%(asctime)s] [%(levelname)s] %(message)s'
+    logger.setLevel(logging.DEBUG)
+    formatter = logging.Formatter(formatStr)
+            
+    logdir = os.path.join(op.dirname(op.abspath(__file__)), "logs")
+    logpath = os.path.join(logdir, "%s.log" % time.strftime('%Y-%m-%d', time.localtime(time.time())))
+    if not os.path.exists(logdir):
+        os.mkdir(logdir)
+    fh = logging.FileHandler(logpath)
+    fh.setLevel(logging.DEBUG)
+    fh.setFormatter(formatter)
+    logger.addHandler(fh)
 
-logger = logging.getLogger("logger")
+    ch = logging.StreamHandler()
+    chformatter = logging.Formatter(formatStr)
+    ch.setLevel(logging.DEBUG)
+    ch.setFormatter(chformatter)
+    logger.addHandler(ch)
 
-logger.setLevel(logging.DEBUG)
-formatter = logging.Formatter(formatStr)
-        
-logdir = os.path.join(op.dirname(op.abspath(__file__)), "logs")
-logpath = os.path.join(logdir, "%s.log" % time.strftime('%Y-%m-%d', time.localtime(time.time())))
-if not os.path.exists(logdir):
-    os.mkdir(logdir)
-fh = logging.FileHandler(logpath)
-fh.setLevel(logging.DEBUG)
-fh.setFormatter(formatter)
-logger.addHandler(fh)
 
-ch = logging.StreamHandler()
-chformatter = logging.Formatter(formatStr)
-ch.setLevel(logging.DEBUG)
-ch.setFormatter(chformatter)
-logger.addHandler(ch)
 
 
 if __name__ == '__main__':

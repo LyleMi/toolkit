@@ -29,6 +29,13 @@ docker pull registry.docker-cn.com/library/ubuntu:16.04
   "registry-mirrors": ["https://registry.docker-cn.com"]
 }
 
+# for tcloud
+{
+   "registry-mirrors": [
+       "https://mirror.ccs.tencentyun.com"
+  ]
+}
+
 # other mirror urls
 hub-mirror.c.163.com
 mirror.baidubce.com

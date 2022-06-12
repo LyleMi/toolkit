@@ -11,7 +11,12 @@ openssl genrsa -out server-key.pem 4096
 openssl req -new -out server-req.csr -key server-key.pem -subj "/C=CN/ST=BJ/L=BJ/O=fish/OU=fish/CN=*.example.com"
 openssl x509 -req -in server-req.csr -out server-cert.pem -signkey server-key.pem -CA ca-cert.pem -CAkey ca-key.pem -CAcreateserial -days 3650
 
-sudo apt-get install apache2-utils
+# one line
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
+
+sudo apt-get install -y apache2-utils
+# or
+sudo yum install -y httpd-tools
 sudo htpasswd -c /etc/nginx/.htpasswd user
 
 sudo nginx -t && sudo service nginx restart

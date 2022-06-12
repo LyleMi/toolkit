@@ -28,14 +28,16 @@ class DB(object):
         cur = self.execute("SELECT name FROM sqlite_master WHERE type='table';")
         return [i for i in cur]
 
-    def insert(self, sql, data):
+    def insert(self, sql, data, multip=False):
         """insert data
 
         Args:
             data (str): data to be inserted
         """
-        # sql = ""
-        self.conn.execute(sql, [data])
+        if multip:
+            ret = self.conn.executemany(sql, data)
+        else:
+            ret = self.conn.execute(sql, data)
         self.conn.commit()
 
     def select(self, sql, data):
