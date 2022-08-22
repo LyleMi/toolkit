@@ -1,0 +1,23 @@
+version: "3"
+services:
+  server:
+    image: clickhouse/clickhouse-server
+    environment:
+      CLICKHOUSE_DB: default
+      CLICKHOUSE_USER: user
+      CLICKHOUSE_PASSWORD: secret
+    ports:
+      - "8123:8123" # http interface
+      - "9000:9000" # native client
+      - "9009:9009"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 262144
+        hard: 262144
+    volumes:
+      - ./data:/var/lib/clickhouse/
+      - ./log:/var/log/clickhouse-server/
+  # client:
+  #   image: clickhouse/clickhouse-client
+  #   command: ['--host', 'server']

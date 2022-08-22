@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  rabbit:
+    image: rabbitmq:3.9.5
+    environment:
+      RABBITMQ_DEFAULT_USER: ra
+      RABBITMQ_DEFAULT_PASS: "password"
+    ports:
+      - "127.0.0.1:5672:5672"

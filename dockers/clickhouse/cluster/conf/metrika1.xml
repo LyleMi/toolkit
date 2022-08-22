@@ -1,0 +1,28 @@
+<yandex>
+  <clickhouse_remote_servers>
+    <!--自定义集群名称-->
+    <test_cluster1>
+      <!--定义集群的分片数量，2个shard标签说明有2个节点-->
+      <shard>
+        <!--定义分片的副本数量，这里副本只有1个-->
+        <replica>
+          <host>ck1</host>
+          <port>9000</port>
+        </replica>
+      </shard>
+      <shard>
+        <replica>
+          <host>ck2</host>
+          <port>9000</port>
+        </replica>
+      </shard>
+    </test_cluster1>
+  </clickhouse_remote_servers>
+ 
+  <zookeeper-servers>
+    <node index="1">
+      <host>zk1</host>
+      <port>2181</port>
+    </node>
+  </zookeeper-servers>
+</yandex>

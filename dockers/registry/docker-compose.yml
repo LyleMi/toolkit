@@ -1,0 +1,13 @@
+version: "3" 
+services:
+  registry:
+    image: registry
+    container_name: registry
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./registry:/var/lib/registry
+    environment:
+      REGISTRY_HTTP_ADDR: 0.0.0.0:5000
+      REGISTRY_STORAGE_DELETE_ENABLED: "true"

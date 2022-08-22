@@ -12,11 +12,25 @@ openssl req -new -out server-req.csr -key server-key.pem -subj "/C=CN/ST=BJ/L=BJ
 openssl x509 -req -in server-req.csr -out server-cert.pem -signkey server-key.pem -CA ca-cert.pem -CAkey ca-key.pem -CAcreateserial -days 3650
 
 # one line
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
+mkdir -p /etc/ssl/private/
+sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
+
+<< _EOF_
+# nginx ssl setting
+ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3; # Dropping SSLv3, ref: POODLE
+ssl_prefer_server_ciphers on;
+ssl_certificate /etc/ssl/certs/nginx-selfsigned.crt;
+ssl_certificate_key /etc/ssl/private/nginx-selfsigned.key;
+_EOF_
 
 sudo apt-get install -y apache2-utils
 # or
 sudo yum install -y httpd-tools
 sudo htpasswd -c /etc/nginx/.htpasswd user
+
+<< _EOF_
+auth_basic "auth";
+auth_basic_user_file /etc/nginx/.htpasswd;
+_EOF_
 
 sudo nginx -t && sudo service nginx restart

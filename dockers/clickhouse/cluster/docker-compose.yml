@@ -1,0 +1,55 @@
+version: "3.7"
+ 
+services:
+  ck1:
+    image: clickhouse/clickhouse-server
+    ulimits:
+      nofile:
+        soft: 300001
+        hard: 300002
+    ports:
+      - 9001:9000
+    volumes:
+      - ./conf/config.xml:/etc/clickhouse-server/config.xml
+      - ./conf/users.xml:/etc/clickhouse-server/users.xml
+      - ./conf/metrika1.xml:/etc/metrika.xml
+    links:
+      - "zk1"
+    depends_on:
+      - zk1
+  ck2:
+    image: clickhouse/clickhouse-server
+    ulimits:
+      nofile:
+        soft: 300001
+        hard: 300002
+    volumes:
+      - ./conf/metrika2.xml:/etc/metrika.xml
+      - ./conf/config.xml:/etc/clickhouse-server/config.xml
+      - ./conf/users.xml:/etc/clickhouse-server/users.xml
+    ports:
+      - 9002:9000
+    depends_on:
+      - zk1
+  ck3:
+    image: clickhouse/clickhouse-server
+    ulimits:
+      nofile:
+        soft: 300001
+        hard: 300002
+    volumes:
+      - ./conf/metrika3.xml:/etc/metrika.xml
+      - ./conf/config.xml:/etc/clickhouse-server/config.xml
+      - ./conf/users.xml:/etc/clickhouse-server/users.xml
+    ports:
+      - 9003:9000
+    depends_on:
+      - zk1
+  zk1:
+    image: zookeeper
+    restart: always
+    hostname: zk1
+    expose:
+      - "2181"
+    ports:
+      - 2181:2181
