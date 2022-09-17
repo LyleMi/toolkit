@@ -8,8 +8,12 @@ services:
       CLICKHOUSE_PASSWORD: secret
     ports:
       - "8123:8123" # http interface
+      - "9999:9999" # https interface
       - "9000:9000" # native client
-      - "9009:9009"
+      - "9440:9440" # native client secure
+      - "9004:9004" # mysql port
+      - "9005:9005" # postgresql port
+      - "9009:9009" # interserver
     ulimits:
       nproc: 65535
       nofile:
