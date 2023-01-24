@@ -13,7 +13,7 @@ openssl x509 -req -in server-req.csr -out server-cert.pem -signkey server-key.pe
 
 # one line
 mkdir -p /etc/ssl/private/
-sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
+sudo openssl req -x509 -nodes -days 3650 -newkey rsa:4096 -keyout ./certs/nginx-selfsigned.key -out ./certs/nginx-selfsigned.crt
 
 << _EOF_
 # nginx ssl setting

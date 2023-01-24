@@ -31,6 +31,8 @@ icacls
 manage-bde
 manage-bde -lock F:
 manage-bde -lock F: -forcedismount
+
+manage-bde -unlock F: -pw
 """,
         "process": """
 # kill

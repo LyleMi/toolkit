@@ -13,6 +13,7 @@ EOF
 """,
         "delete": """
 kubectl delete -f file.yaml
+kubectl delete pods -A --field-selector=status.phase=Failed
 """,
         "api": """
 kubectl get apiservices
@@ -28,11 +29,17 @@ kubectl get pod -o=custom-columns=NAME:.metadata.name,STATUS:.status.phase,NODE:
 
 # delete pods by status
 kubectl get pods | grep -i evicted | awk '{print $1}' | xargs -i kubectl delete pods {}
+
+# for pods hang on terminating
+kubectl get pods | grep -i terminating | awk '{print $1}' | xargs -i kubectl delete --grace-period=0 --force pods {}
 """,
         "node": """
 kubectl get node
+
+kubectl get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name --all-namespaces
 """,
         "deploy": """
+kubectl get deploy
 kubectl scale deploy <deployment> --replicas=0
 kubectl scale deploy <deployment> --replicas=1
 """,

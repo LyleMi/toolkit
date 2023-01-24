@@ -1,0 +1,19 @@
+[mysqld]
+
+# [log bin 配置]
+
+# 配置 log bin 时需要配置 server-id 防止循环引用
+server-id         = 1337
+# 配置 log bin 位置到 /var/lib/mysql 方便导出
+log_bin           = /var/lib/mysql/mysql-bin
+
+# binlog 文件保存时间，为0表示永不过期
+expire_logs_days  = 0
+
+# row: 日志中会记录成每一行数据被修改的形式，然后在 slave 端再对相同的数据进行修改。
+# Statement: 每一条会修改数据的 SQL 都会记录到 master 的 bin-log 中。slave 在复制的时候 SQL 进程会解析成和原来 master 端执行过的相同的 SQL 再次执行。
+# Mixed: 从 5.1.8 版本开始，MySQL 提供了除 Statement 和 Row 之外的第三种复制模式：Mixed，实际上就是前两种模式的结合。
+binlog_format     = statement
+
+# 仅关注某一个数据库
+# binlog-do-db = xxxxx

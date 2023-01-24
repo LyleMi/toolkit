@@ -9,6 +9,7 @@ class Go(Base):
     _doc = {
         "proxy": """
 export GOPROXY=https://goproxy.io
+export GOPROXY=https://goproxy.cn
 """,
         "compile": """
 go tool compile

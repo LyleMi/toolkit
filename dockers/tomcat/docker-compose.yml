@@ -1,0 +1,8 @@
+version: '3'
+services:
+  web:
+    image: tomcat:8.5.77-jre11
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./jsp:/usr/local/tomcat/webapps/ROOT
