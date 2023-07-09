@@ -15,6 +15,10 @@ openssl x509 -req -in server-req.csr -out server-cert.pem -signkey server-key.pe
 mkdir -p /etc/ssl/private/
 sudo openssl req -x509 -nodes -days 3650 -newkey rsa:4096 -keyout ./certs/nginx-selfsigned.key -out ./certs/nginx-selfsigned.crt
 
+sudo openssl req -x509 -nodes -days 3650 -newkey rsa:4096 -keyout /tmp/tls.key -out /tmp/tls.crt
+cat /tmp/tls.key | base64
+cat /tmp/tls.crt | base64
+
 << _EOF_
 # nginx ssl setting
 ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3; # Dropping SSLv3, ref: POODLE
@@ -27,6 +31,9 @@ sudo apt-get install -y apache2-utils
 # or
 sudo yum install -y httpd-tools
 sudo htpasswd -c /etc/nginx/.htpasswd user
+
+# for k8s yaml
+htpasswd -c /tmp/auth user && cat /tmp/auth | base64 && rm /tmp/auth
 
 << _EOF_
 auth_basic "auth";
